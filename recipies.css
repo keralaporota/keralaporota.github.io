@@ -1,5 +1,5 @@
 body {
-      background:#b38e67;
+      background:#efcf75;
       /* background-image: url("./images/green-classic-checkered-tablecloth2.jpg"); */
       background-image: url("./images/patternsbg/yellowpaperie.webp");
       background-size: 40% auto;  /* width 50% of viewport, height auto */
@@ -16,4 +16,5 @@ body {
     .breacipies{
         align-items: center;
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+
     }
