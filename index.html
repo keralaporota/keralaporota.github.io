@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thewebhome</title>
+
+    <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="./images/Untitled.gif">
+
+  <style>
+
+    body {
+    background-image: url('./images/pinkgrid.jpg');
+    background-attachment: fixed;
+    font-family: 'Courier New', Courier, monospace;
+   }
+
+   .velope{
+    display: block;
+    margin: 0 auto;
+    width:42vw;
+    margin:auto;
+    transition: transform 0.2s ease;
+   }
+
+   .velope:hover {
+    transform: translateY(-5px); /* little lift on hover */
+   }
+
+   .typedtext{
+    text-align: center;
+   }
+
+   /*FOOTER*/
+   #footer{
+      clear: left;
+      width: 100%;
+      background: transparent;
+      font-family: 'Courier New';
+      font-size: 12px;
+      font-weight:10px;
+      color: black;
+      text-align: center;
+      padding: 4px 0;
+     }
+
+     .typedtext {
+      position: absolute;
+      top: 50%; /* adjust this to move vertically */
+      left: 50.4%; /* adjust this to move horizontally */
+      transform: translate(-50%, -250%); /* perfectly centers the text, although why the hell did i make this 250 to move the text up when i could have just changed top? it's 11pm that's why */
+      color: black; /* choose text color based on image */
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      text-align: center;
+      width: 80%; /* optional, controls text width */
+     }
+
+    /* ------------ Preload ------------
+   #loading {
+     background: #fefefc url(./images/preloader.gif) center no-repeat;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: 3000;
+   } */
+
+  </style>
+</head>
+
+<body>
+    <!-- <div id="loading"></div>
+
+      <div id="content" style="display: none;">
+    your actual site starts here -->
+
+    <div class="image-container">
+    <a href="desk.html"> <!--opens to new page, the desk-->
+      <!--it’ll open desk.html in the same tab by default (you can add target="_blank" if you want it in a new tab)-->
+    <img src="images/blacktypewriter.png" class="velope"> 
+    </a>
+    <div class="typedtext"> 
+    <p>Dear Reader, <br>
+      Welcome to this humble corner on the <br>
+      web. Please note that this website is <br>
+      best viewed on a desktop browser. <br><br>
+      From the desk of Madambath V. Malavika
+    </p>
+    </div>
+    </div>
+   
+    <br>
+    <div id="footer">est. 2025, created with my own two hands.</div>
+
+    
+    
+<!-- <script>
+  // script.js for the loading gif
+window.addEventListener("load", function() {
+  const loader = document.getElementById("loading"); //this should match the div id. both should be loading, or whatever you wnat to call it
+  const content = document.getElementById("content");
+
+  loader.classList.add("hidden");
+
+  // Wait for fade-out transition
+  setTimeout(() => {
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 600); // match transition duration
+});
+</script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+body {
+      background-color: #b38e67;
+      background-image: url("./images/patternsbg/bluestripes.jpg");
+      background-repeat: repeat;
+      margin: 0;
+      background-repeat: repeat; /*(default) image tiles horizontally + vertically until it fills the element.*/
+
+      display: flex; /*By default, flex puts items in a row (left to right) */
+      flex-direction: column; /*stack items vertically (like a menu)*/
+      align-items: center; /* centers all images horizontally */
+      gap: 5px; /* space between links */
+    }
+
+    a img {
+      display: block;
+    }
+
+    img:hover {
+  padding-left: 10px;
+  transition: padding 0.2s ease; /* makes it smooth */
+}
+    
+

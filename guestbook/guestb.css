@@ -1,0 +1,347 @@
+/* ==========================================
+   BODY AND TYPOGRAPHY
+========================================== */
+body {
+  background: #000000f6 url(/index_images/starbg.gif);
+  background-blend-mode: screen;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+center {
+  text-align: center;
+}
+
+a {
+  color: #2092b1;
+}
+
+/* ==========================================
+   SELECTION COLORS
+========================================== */
+::selection {
+  background: #719696;
+  color: white;
+}
+::-moz-selection {
+  background: #719696;
+  color: white;
+}
+
+/* ==========================================
+   MAIN CONTAINERS
+========================================== */
+#main {
+  background-color: rgb(251, 251, 251);
+  border: 0px solid;
+  border-color: rgba(169, 169, 169, 0);
+  color: #333333;
+  padding: 1% 5%;
+  max-width: 750px;
+  height: auto;
+  border-radius: 20px;
+  margin: auto;
+  position: relative;
+}
+
+.window {
+  background: rgb(0, 0, 0) url(/index_images/starbg.gif);
+  margin: 20px;
+  padding: 20px;
+  color: #c1edeb;
+  border-radius: 20px;
+}
+
+.paper {
+  background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+  -webkit-background-size: 100% 30px;
+  -moz-background-size: 100% 30px;
+  -ms-background-size: 100% 30px;
+  background-size: 100% 30px;
+  border: 0px solid;
+  border-color: rgba(169, 169, 169, 0);
+  color: #333333;
+  padding: 5% 5% 5% 5%; 
+  max-width: 750px;
+  height: auto;
+  border-radius: 20px;
+  margin: auto;
+  position: relative;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+.button {
+  background-color: #74abb3; 
+  font-family: 'Roboto Mono', monospace;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  transition-duration: 0.2s;
+  margin: 5px;
+}
+
+.button:hover {
+  background-color: #9ccdd6; 
+  color: white;
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: #74abb3;
+  box-shadow: 0 5px rgba(219, 205, 166, 0.437);
+  transform: translateY(4px);
+}
+
+/* Image Buttons */
+.buttonimg {
+  background-color: #ffffff00; 
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  transition-duration: 0.2s;
+}
+
+.buttonimg:hover {
+  background-color: #9ccdd600; 
+  transform: translateY(2px);
+  color: white;
+  cursor: pointer;
+}
+
+.buttonimg:active {
+  background-color: #74abb327;
+  transform: translateY(5px);
+  box-shadow: 0 5px rgba(219, 205, 166, 0);
+}
+
+/* Mobile Buttons */
+.mobilebutton {
+  margin: auto;
+}
+.mobilebutton button {
+  background-color: #5c777b;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 20px;
+  margin: 30px 30px 30px 0px;
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  transition: 0.2s;
+  border: none;
+}
+.mobilebutton a { text-decoration: none; }
+.mobilebutton button:not(:last-child) { border-bottom: none; }
+.mobilebutton button:hover {
+  background-color: #a8b6bd;
+  color: #0d2736;
+}
+
+/* ==========================================
+   INPUTS AND FORM ELEMENTS
+========================================== */
+input {
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 5px;
+  border-color: #74abb3;
+  margin-right: 10px;
+}
+
+#statuscafe {
+  color: #11274d;
+  height: auto;
+  padding: 1%;
+}
+
+form input,
+form select,
+form textarea,
+form fieldset,
+form optgroup,
+form label,
+.StripeElement {
+  font-family: inherit;
+  font-size: 100%;
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+form label,
+form legend {
+  font-size: 0.825rem;
+  margin-bottom: 0.5rem;
+}
+form input,
+form select,
+form textarea,
+.StripeElement {
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url(index_images/patterns/heartpattern.png);
+  padding: 0.75em 1rem;
+  margin-bottom: 1.5rem;
+}
+form input:focus,
+form select:focus,
+form textarea:focus,
+.StripeElement:focus {
+  background-color: white;
+  outline-style: solid;
+  outline-width: thin;
+  outline-color: gray;
+  outline-offset: -1px;
+}
+form [type="text"],
+form [type="email"],
+.StripeElement { width: 100%; }
+form [type="button"],
+form [type="submit"],
+form [type="reset"] {
+  width: auto;
+  cursor: pointer;
+  appearance: button;
+  transition: 0.2s;
+}
+form [type="button"]:focus,
+form [type="submit"]:focus,
+form [type="reset"]:focus { outline: none; }
+form select { text-transform: none; }
+
+/* ==========================================
+   FLEXBOX AND CONTAINERS
+========================================== */
+.flex {
+  display: flex !important;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+}
+
+.twoCLtext { max-width: 300px; padding-right: 3%; }
+.twoCRtext { max-width: 300px; padding-left: 3%; }
+
+.updatescroll {
+  height: 200px;
+  max-width: 300px;
+  overflow-y: scroll;
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 400px;
+  overflow-y: scroll;
+}
+.buttoncontainer a { padding: 4px; }
+
+.bookcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+  overflow-y: scroll;
+  justify-content: space-evenly;
+}
+.bookcontainer a { margin: 4px; }
+
+
+/* ==========================================
+   COMMENT BOX STYLING
+========================================== */
+#HCB_comment_box,
+.recent-comment {
+  font-family: 'Roboto Mono', monospace;
+  padding: 10px 20px 10px;
+  position: relative;
+  background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+  -webkit-background-size: 100% 30px;
+  -moz-background-size: 100% 30px;
+  -ms-background-size: 100% 30px;
+  background-size: 100% 30px;
+  border-radius: 20px;
+  box-shadow: #d4e2ea;
+}
+
+#HCB_comment_box blockquote::before {
+  content:""; 
+  z-index:-1; 
+  margin:0 1px; 
+  width:706px; 
+  height:10px; 
+  position:absolute; 
+  bottom:-3px; 
+  left:0; 
+  background:white; 
+  border:1px solid #B5B5B5;
+}
+
+#HCB_comment_box #hcb_form_content,
+#HCB_comment_box #hcb_form_email,
+#HCB_comment_box #hcb_form_name,
+#HCB_comment_box #hcb_form_website,
+#HCB_comment_box #hcb_submit,
+#HCB_comment_box .author-name,
+#HCB_comment_box .hcb-comment-body,
+#HCB_comment_box .hcb-comment-tb a,
+#HCB_comment_box #hcb_form textarea,
+#HCB_comment_box #hcb_form #hcb_form_name {
+  border-radius: 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+}
+
+.recent-comment-hdr {
+  background: #c1e0e4;
+  padding: 5px;
+  border-radius: 20px;
+}
+.recent-comment-hdr::before {
+  content: url("http://i205.photobucket.com/albums/bb186/mhilkas/favoicons/favcoelho2.gif");
+}
+
+
+/* ==========================================
+   FEED STYLING
+========================================== */
+p.rss-title { display:none; }
+li.rss-item { list-style-type:none; margin-bottom:20px; }
+li.rss-item img { max-width: 100%; height: auto; border-radius: 10px; }
+li.rss-item a { font-weight:bold; font-size:14px; text-decoration:none; }
+.rss-date {
+  display:inline-block;
+  padding: 2px 10px 2px 10px;
+  margin: 5px;
+  color: white;
+  background-color: #649495;
+  border-radius: 10px;
+  font-style: italic;
+}
+a.rss-item:last-child { display:none; }
+
+

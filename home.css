@@ -1,0 +1,89 @@
+body {
+      background:#b38e67;
+      /* background-image: url("./images/green-classic-checkered-tablecloth2.jpg"); */
+      background-image: url("./images/patternsbg/whiteredchecks.jpg");
+      background-size: 15% auto;  /* width 50% of viewport, height auto */
+      background-repeat: repeat;   /* repeat to cover the screen */
+
+      color:#1e1e1e;
+      font: bolder 8pt tahoma;
+      /* font-family: 'Pixelify Sans', sans-serif; use this line in whichever class i want pixel font in */
+      text-align:justify;
+      letter-spacing: 2px;
+      margin:0;padding:0;
+    }
+
+/* Make sure images can be placed freely */
+img {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(5px 5px 8px rgba(0, 0, 0, 0.3)); /* subtle shadow */
+}
+
+/* Hover effect */
+img:hover {
+  transform: scale(1.05);
+  /* filter: drop-shadow(0 0 0 red); 0 offsets, 0 blur, color = border color */
+  filter: 
+    drop-shadow(0 0 2px rgb(255, 255, 255))
+    drop-shadow(0 0 2px rgb(255, 255, 255))
+    drop-shadow(0 0 2px rgb(255, 255, 255));
+}
+
+/*DESK STUFF POSITIONS*/
+.camera {
+  left: 5%;
+  top: 40%;
+  width: 20%;
+}
+
+/*MP3 needs extra coding because I want it to loft on hover and be clickable only in the top right corner of the image*/ 
+/* Wrap both image and clickable area */
+.mp3-wrapper {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  width: 25%;
+  display: inline-block;
+}
+
+/* MP3 image styling */
+.mp3player {
+  width: 100%;
+  filter: drop-shadow(5px 5px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  transform-origin: top right; /* makes it lift from that corner */
+}
+
+/* The clickable hotspot */
+.mp3-link {
+  position: absolute;
+  right: 5%;  /* match image's right alignment */
+  top: 5%;    /* match image's top alignment */
+  width: 50%; /* half of image width (right half) */
+  height: 50%; /* top half */
+  cursor: pointer;
+  z-index: 10;
+  /* optional: visualize for testing */
+  /* background-color: rgba(255, 0, 0, 0.2); */
+}
+
+
+.crochet {
+  left: 40%;
+  top: 0;
+  width: 16%;
+}
+
+
+/* img.kirbyvibe {
+	bottom: 0;
+	right: 0;
+	position: fixed;
+	margin: 0 3% 3% 0;
+}
+
+#footer a{
+color: #FFC0CB;
+} */

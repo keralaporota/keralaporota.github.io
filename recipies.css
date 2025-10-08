@@ -1,0 +1,19 @@
+body {
+      background:#b38e67;
+      /* background-image: url("./images/green-classic-checkered-tablecloth2.jpg"); */
+      background-image: url("./images/patternsbg/yellowpaperie.webp");
+      background-size: 40% auto;  /* width 50% of viewport, height auto */
+      background-repeat: repeat;   /* repeat to cover the screen */
+
+      color:#1e1e1e;
+      font: bolder 8pt tahoma;
+      /* font-family: 'Pixelify Sans', sans-serif; use this line in whichever class i want pixel font in */
+      text-align:justify;
+      letter-spacing: 2px;
+      margin:0;padding:0;
+    }
+
+    .breacipies{
+        align-items: center;
+        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+    }
