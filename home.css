@@ -1,5 +1,5 @@
 body {
-      background:#b38e67;
+      background:#de7862;
       /* background-image: url("./images/green-classic-checkered-tablecloth2.jpg"); */
       background-image: url("./images/patternsbg/whiteredchecks.jpg");
       background-size: 15% auto;  /* width 50% of viewport, height auto */
@@ -86,4 +86,5 @@ img:hover {
 
 #footer a{
 color: #FFC0CB;
+
 } */
