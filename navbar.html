@@ -28,35 +28,10 @@
     <a href="links.html" target="rightside"><img src="./images/desk navtags/links.png" height="58px"></a><br>
     
 
- <!-- <script>
- //THIS IS SO THAT THE LINKS FROM NAVBAR LOAD ON THE SAME TAB WHEN CLICKED FROM MOBILE bc it was opening in new tabs before this
-     //The pages were opening in a new tab earlier because the navbar links had target="rightside". That works only when the rightside frame exists (desktop mode).
-     //In mobile mode, there’s no such frame — so the browser opened the link in a new tab instead. 
-     //Now, the JavaScript makes all links open inside the iframe, fixing the issue. If the width is 768px or less, it switches to mobile mode.
-  window.addEventListener("DOMContentLoaded", () => {
-    const links = document.querySelectorAll("a");
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    links.forEach(link => {
-      if (isMobile) {
-        // On mobile: remove the target entirely so it doesn't open new tab
-        link.removeAttribute("target");
-
-        // Replace frame navigation with same-tab navigation
-        link.onclick = (e) => {
-          e.preventDefault(); // stop default behavior
-          window.top.location.href = link.href; // load directly in current tab
-        };
-      } else {
-        // On desktop: keep the frame behavior
-        link.setAttribute("target", "rightside");
-      }
-    });
-  });
-</script> -->
 </body>
 
 </html>
+
 
 
 
