@@ -9,6 +9,52 @@
 </head>
 
 <body>
+    <div id="hamburger">
+     <img src="./images/hamburger.png" alt="Menu">
+    </div>
+  <iframe id="mobileView"></iframe>
+
     <img class="breacipies" src="./images/recipiesbread.png" width="45%">
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const mobileFrame = document.getElementById("mobileView");
+
+function switchToMobile() {
+  hamburger.style.display = "block";
+  mobileFrame.style.display = "block";
+  if (!mobileFrame.src || mobileFrame.src.endsWith("about:blank")) {
+    mobileFrame.src = "home.html"; // default page
+  }
+  let showingNavbar = false;
+  hamburger.onclick = () => {
+    mobileFrame.src = showingNavbar ? "home.html" : "navbar.html";
+    showingNavbar = !showingNavbar;
+  };
+}
+
+function switchToDesktop() {
+  hamburger.style.display = "none";
+  mobileFrame.style.display = "none";
+}
+
+// check width and setup view
+function setupView() {
+  if (window.innerWidth <= 768) switchToMobile();
+  else switchToDesktop();
+}
+
+window.addEventListener("load", setupView);
+window.addEventListener("resize", setupView);
+
+// fix mobile links opening in new tab
+const isMobile = window.innerWidth <= 768;
+const links = document.querySelectorAll("a");
+links.forEach(link => {
+  if (isMobile) link.removeAttribute("target");
+  else link.setAttribute("target", "rightside");
+});
+</script>
+
 </body>
 </html>
