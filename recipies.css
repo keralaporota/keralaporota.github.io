@@ -18,3 +18,25 @@ body {
         filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 
     }
+
+#hamburger {
+  display: none;        /* hidden by default, only mobile shows it */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+#hamburger img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#mobileView { 
+  display: none; 
+  width: 100%; 
+  height: 100vh; 
+  border: none; 
+}
+
