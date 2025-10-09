@@ -26,9 +26,36 @@
     <!-- <a href="underconstruction.html" target="rightside"><img src="./images/desk navtags/home_movies.png" height="60px"></a><br> -->
     <!-- <a href="underconstruction.html" target="rightside"><img src="./images/desk navtags/collections.png"></a><br> -->
     <a href="links.html" target="rightside"><img src="./images/desk navtags/links.png" height="58px"></a><br>
+
+    <script>
+  // When the navbar is loaded...
+  window.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll("a");
+
+    // Check if the screen width is mobile-sized
+    const isMobile = window.innerWidth <= 768;
+
+    links.forEach(link => {
+      if (isMobile) {
+        // On mobile: remove the "target" so it opens in the same tab
+        link.removeAttribute("target");
+
+        // And prevent any frame-targeting behaviour that might cause a new tab
+        link.addEventListener("click", function (e) {
+          e.preventDefault(); // Stop default frame/tab behavior
+          window.location.href = this.getAttribute("href"); // Load the link in same tab
+        });
+      } else {
+        // On desktop: ensure the links still open in the right frame
+        link.setAttribute("target", "rightside");
+      }
+    });
+  });
+</script>
 </body>
 
 </html>
+
 
 
 
