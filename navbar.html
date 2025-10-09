@@ -27,26 +27,23 @@
     <!-- <a href="underconstruction.html" target="rightside"><img src="./images/desk navtags/collections.png"></a><br> -->
     <a href="links.html" target="rightside"><img src="./images/desk navtags/links.png" height="58px"></a><br>
 
-    <script>
-  // When the navbar is loaded...
+   <script>
   window.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll("a");
-
-    // Check if the screen width is mobile-sized
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     links.forEach(link => {
       if (isMobile) {
-        // On mobile: remove the "target" so it opens in the same tab
+        // On mobile: remove the target entirely so it doesn't open new tab
         link.removeAttribute("target");
 
-        // And prevent any frame-targeting behaviour that might cause a new tab
-        link.addEventListener("click", function (e) {
-          e.preventDefault(); // Stop default frame/tab behavior
-          window.location.href = this.getAttribute("href"); // Load the link in same tab
-        });
+        // Replace frame navigation with same-tab navigation
+        link.onclick = (e) => {
+          e.preventDefault(); // stop default behavior
+          window.top.location.href = link.href; // load directly in current tab
+        };
       } else {
-        // On desktop: ensure the links still open in the right frame
+        // On desktop: keep the frame behavior
         link.setAttribute("target", "rightside");
       }
     });
@@ -55,6 +52,7 @@
 </body>
 
 </html>
+
 
 
 
