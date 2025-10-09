@@ -236,52 +236,10 @@
     }
   });
 
-
-    //TO SHOW THE HAMBURGER ON ALL THE PAGES
-    const iframe = document.getElementById("mobileView"); // your existing iframe id
-  const hamburger = document.getElementById("hamburger"); // your existing hamburger
-
-  // Function to inject hamburger into iframe
-  function injectHamburger() {
-    if (window.innerWidth <= 768) { // only for mobile
-      try {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-        // Remove old injected hamburger if it exists
-        const existing = iframeDoc.getElementById("mobileHamburger");
-        if (existing) existing.remove();
-
-        // Clone the original hamburger
-        const clone = hamburger.cloneNode(true);
-        clone.id = "mobileHamburger"; // avoid duplicate ids
-        clone.style.position = "fixed"; // stays on top inside iframe
-        clone.style.top = "10px";
-        clone.style.left = "10px";
-        clone.style.zIndex = "9999";
-
-        // Append cloned hamburger to iframe body
-        iframeDoc.body.appendChild(clone);
-
-        // Make the toggle work inside the iframe
-        let showingNavbar = false;
-        clone.onclick = () => {
-          iframe.src = showingNavbar ? "home.html" : "navbar.html";
-          showingNavbar = !showingNavbar;
-        };
-      } catch (err) {
-        // Ignore cross-origin issues (should not happen for same-site pages)
-        console.log("Cannot inject hamburger:", err);
-      }
-    }
-  }
-
-  // Inject on iframe load and whenever window resizes
-  iframe.addEventListener("load", injectHamburger);
-  window.addEventListener("resize", injectHamburger);
-
   </script>
 </body>
 </html>
+
 
 
 
