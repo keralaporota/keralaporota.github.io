@@ -36,14 +36,12 @@
 
   <style>
     /* 🎀What changed from OG code?
-       - The original desk.html used <frameset> directly.
-       - Now using normal <body> styling with background and layout.
-       - This lets the page show correctly on mobile screens.
+       The original desk.html used <frameset> directly.Now using normal <body> styling with background and layout.
+       This lets the page show correctly on mobile screens.
 
        💀Why:
-       - <frameset> is old and doesn’t work well on phones.
-       - By controlling everything in CSS + JavaScript,
-         we can “pretend” to have frames only on big screens. */
+       bc <frameset> is old and doesn’t work well on phones.
+       By controlling everything in CSS + JavaScript, we can “pretend” to have frames only on big screens. */
 
     html, body {
       margin: 0;        /* remove browser’s built-in gaps (stops white borders). */
@@ -104,8 +102,8 @@
 
     /* Function: switchToMobile
        😭 What changed from the original code:
-       - old desk.html always used frameset no matter the screen.
-       - now, if the screen is small (mobile), we remove the frameset
+        Old desk.html always used frameset no matter the screen.
+        Now, if the screen is small (mobile), we remove the frameset
          and show the hamburger + iframe instead.
 
        👀 What this does:
@@ -153,15 +151,14 @@
 
     /* Function: switchToDesktop
        😭 What changed from the OG code:
-       - Before, your HTML already contained a <frameset>.
-       - Now, we build it with JavaScript only when needed (desktop).
-       - This avoids problems with small screens and lets us “switch” views.
+        Before, this HTML already contained a <frameset>. Now, we build it with JavaScript only when needed (desktop).
+        This avoids problems with small screens and lets us “switch” views.
 
        🎀 Wot this does:
-       - Removes any mobile elements (iframe + hamburger)
-       - Creates a frameset in memory
-       - Adds two frames inside: one for navbar.html and one for home.html
-       - Puts that frameset into the page, recreating your original layout*/
+        Removes any mobile elements (iframe + hamburger).
+        Creates a frameset in memory.
+        Adds two frames inside: one for navbar.html and one for home.html
+        Puts that frameset into the page, recreating your original layout*/
 
     function switchToDesktop() {
       // Wipe out everything in the body (removes hamburger and iframe)
@@ -199,10 +196,9 @@
 
     /* Function: setupView
        👀 this does whot?
-       - This decides *which layout* to use when the page loads or resizes.
-       - If the screen is smaller than 768 pixels (a phone),
-         it calls switchToMobile().
-       - Otherwise, it builds your normal two-frame layout.*/
+        This decides *which layout* to use when the page loads or resizes.
+        If the screen is smaller than 768 pixels (a phone), it calls switchToMobile().
+        Otherwise, it builds your normal two-frame layout.*/
 
     function setupView() {
       if (window.innerWidth <= 768) switchToMobile(); // Use mobile view
@@ -212,12 +208,13 @@
     // run setupView when the page first loads.
     window.addEventListener("load", setupView);
 
-    // un setupView again if the window size changes (e.g., rotating your phone).
+    // run setupView again if the window size changes (e.g., rotating your phone).
     window.addEventListener("resize", setupView);
 
   </script>
 </body>
 </html>
+
 
 
 
