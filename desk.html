@@ -4,19 +4,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>the desk</title>
-
   <link rel="icon" type="image/gif" href="./images/Untitled.gif">
-  
+
+  <style>
+    /* -------------------------------------------------
+       General page styles
+       ------------------------------------------------- */
+    html, body {
+      margin: 0;        /* Remove default browser margin */
+      padding: 0;       /* Remove default browser padding */
+      height: 100%;     /* Ensure page fills the screen */
+      background: #000; /* Black background for mobile mode */
+    }
+
+    /* -------------------------------------------------
+       Mobile hamburger container
+       ------------------------------------------------- */
+    #hamburger {
+      display: none;        /* Hidden by default (desktop mode) */
+      position: fixed;      /* Stay in one place while scrolling */
+      top: 10px;            /* 10px from top of screen */
+      left: 10px;           /* 10px from left of screen */
+      z-index: 9999;        /* On top of everything else */
+    }
+
+    /* Hamburger image inside container */
+    #hamburger img {
+      width: 40px;          /* Size of hamburger icon */
+      height: 40px;
+      cursor: pointer;      /* Pointer cursor on hover */
+    }
+
+    /* -------------------------------------------------
+       Mobile iframe
+       ------------------------------------------------- */
+    #mobileView {
+      display: none;        /* Hidden by default (desktop mode) */
+      width: 100%;          /* Full width of the screen */
+      height: 100vh;        /* Full height of the screen */
+      border: none;         /* Remove default iframe border */
+    }
+  </style>
 </head>
+<body>
+  <!-- -------------------------------------------------
+       Mobile hamburger button and iframe
+       ------------------------------------------------- -->
+  <div id="hamburger">
+    <img src="./images/hamburger.png" alt="Menu">
+  </div>
 
- <!-- Frameset replaces <body>  -->
-<frameset cols="225,*" border="0" frameborder="0" framespacing="0">
-   <!-- Left navbar frame  -->
-  <frame src="navbar.html" name="navbar" scrolling="auto" noresize>
-  
-   <!-- Right content frame  -->
-  <frame src="home.html" name="rightside" scrolling="auto">
-</frameset>
+  <!-- Mobile iframe that will show either home.html or navbar.html -->
+  <iframe id="mobileView"></iframe>
 
+  <script>
+    // Grab references to the mobile hamburger and iframe
+    const hamburger = document.getElementById("hamburger");
+    const mobileFrame = document.getElementById("mobileView");
+
+    /* -------------------------------------------------
+       Function: switchToMobile
+       -------------------------------------------------
+       Called when screen width is <= 768px (mobile view)
+       - Removes frameset if it exists (desktop layout)
+       - Ensures hamburger and iframe exist
+       - Shows them
+       - Loads home.html by default
+       - Sets up click toggle to switch between home.html and navbar.html
+    ------------------------------------------------- */
+    function switchToMobile() {
+      // Remove desktop frameset if it exists
+      const fs = document.getElementById("deskFrameset");
+      if (fs) fs.remove();
+
+      // Restore mobile elements if they are missing (in case user resized)
+      if (!document.getElementById("hamburger")) {
+        document.body.innerHTML = `
+          <div id="hamburger"><img src="./images/hamburger.png" alt="Menu"></div>
+          <iframe id="mobileView"></iframe>
+        `;
+      }
+
+      // Grab the restored elements
+      const burger = document.getElementById("hamburger");
+      const frame = document.getElementById("mobileView");
+
+      // Show hamburger and iframe
+      burger.style.display = "block";
+      frame.style.display = "block";
+
+      // Load home.html if iframe is empty
+      if (!frame.src || frame.src.endsWith("about:blank")) {
+        frame.src = "home.html";
+      }
+
+      // Setup click to toggle between home.html and navbar.html
+      let showingNavbar = false; // Track which page is currently visible
+      burger.onclick = () => {
+        frame.src = showingNavbar ? "home.html" : "navbar.html";
+        showingNavbar = !showingNavbar;
+      };
+    }
+
+    /* -------------------------------------------------
+       Function: switchToDesktop
+       -------------------------------------------------
+       Called when screen width > 768px (desktop view)
+       - Clears mobile elements
+       - Builds a frameset with navbar (left) and home (right)
+       - Keeps the original desktop look
+    ------------------------------------------------- */
+    function switchToDesktop() {
+      // Remove mobile elements
+      document.body.innerHTML = "";
+
+      // Create frameset dynamically
+      const fs = document.createElement("frameset");
+      fs.id = "deskFrameset";                 // Give it an ID for later reference
+      fs.setAttribute("cols", "225,*");       // 225px navbar, rest for main content
+      fs.setAttribute("border", "0");
+      fs.setAttribute("frameborder", "0");
+      fs.setAttribute("framespacing", "0");
+
+      // Left frame: navbar
+      const nav = document.createElement("frame");
+      nav.src = "navbar.html";
+      nav.name = "navbar";
+      nav.setAttribute("scrolling", "auto");
+      nav.setAttribute("noresize", "");
+
+      // Right frame: main content
+      const home = document.createElement("frame");
+      home.src = "home.html";
+      home.name = "rightside";
+      home.setAttribute("scrolling", "auto");
+
+      // Add frames to frameset
+      fs.appendChild(nav);
+      fs.appendChild(home);
+
+      // Add frameset to body
+      document.body.appendChild(fs);
+    }
+
+    /* -------------------------------------------------
+       Function: setupView
+       -------------------------------------------------
+       Called on page load and window resize
+       - Checks screen width
+       - Chooses mobile or desktop layout
+    ------------------------------------------------- */
+    function setupView() {
+      if (window.innerWidth <= 768) switchToMobile(); // Mobile layout
+      else switchToDesktop();                           // Desktop layout
+    }
+
+    // Call setupView on page load
+    window.addEventListener("load", setupView);
+
+    // Call setupView whenever window is resized
+    window.addEventListener("resize", setupView);
+
+  </script>
+</body>
 </html>
 
