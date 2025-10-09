@@ -220,9 +220,38 @@
     }
   });
 
+    <script>
+  function setupMobileHamburger() {
+    if (window.innerWidth <= 768) { // Only on mobile
+      // Remove the iframe if it exists
+      const iframe = document.getElementById("mobileView");
+      if (iframe) iframe.remove();
+
+      // Ensure hamburger is visible
+      const burger = document.getElementById("hamburger");
+      if (burger) burger.style.display = "block";
+
+      // Make all navbar links load in the same tab instead of rightside frame
+      const links = document.querySelectorAll('a[target="rightside"]');
+      links.forEach(link => {
+        link.removeAttribute("target"); // removes opening in new tab/frame
+        link.onclick = function(e) {
+          e.preventDefault(); // stop default navigation
+          window.location.href = this.href; // load page in same tab
+        };
+      });
+    }
+  }
+
+  // Run on page load and whenever window resizes
+  window.addEventListener("load", setupMobileHamburger);
+  window.addEventListener("resize", setupMobileHamburger);
+</script>
+
   </script>
 </body>
 </html>
+
 
 
 
