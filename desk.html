@@ -26,7 +26,6 @@
   </body>
   </html> -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,76 +35,92 @@
   <link rel="icon" type="image/gif" href="./images/Untitled.gif">
 
   <style>
-    /* -------------------------------------------------
-       General page styles
-       ------------------------------------------------- */
+    /* 🎀What changed from OG code?
+       - The original desk.html used <frameset> directly.
+       - Now using normal <body> styling with background and layout.
+       - This lets the page show correctly on mobile screens.
+
+       💀Why:
+       - <frameset> is old and doesn’t work well on phones.
+       - By controlling everything in CSS + JavaScript,
+         we can “pretend” to have frames only on big screens. */
+
     html, body {
-      margin: 0;        
-      padding: 0;       
-      height: 100%;     /* Ensure page fills the screen */
+      margin: 0;        /* remove browser’s built-in gaps (stops white borders). */
+      padding: 0;
+      height: 100%;     /* Make the background fill the full page. */
     }
 
-    /* -------------------------------------------------
-       Mobile hamburger container
-       ------------------------------------------------- */
+    /* MOBILE HAMBURGER CONTAINER
+       This replaces the left “navbar” frame when on a phone. It’s hidden on big screens and shown only on small screens.*/
     #hamburger {
-      display: none;        /* hidden by default (desktop mode) */
-      position: fixed;      /* stays in one place while scrolling */
-      top: 10px;            /* 10px from top of screen */
-      left: 10px;           /* 10px from left of screen */
-      z-index: 9999;        /* On top of everything else */
+      display: none;        /* hidden by default, only shows on mobile view. */
+      position: fixed;      
+      top: 10px;            /* 10 pixels from the top, 10 pixels from the left = stays in top left corner*/
+      left: 10px;           
+      z-index: 9999;        /* stays above everything else (so you can always tap it). */
     }
 
-    /* Hamburger image inside container */
+    /* HAMBURGER IMAGE in container*/
     #hamburger img {
-      width: 40px;          /* Size of hamburger icon */
+      width: 40px;          
       height: 40px;
-      cursor: pointer;      /* Pointer cursor on hover */
+      cursor: pointer;      /* mouse becomes a pointer when you hover over it. */
     }
 
-    /* -------------------------------------------------
-       Mobile iframe
-       ------------------------------------------------- */
+    /* MOBILE IFRAME
+       💀 wozzat??
+       the <iframe> acts like a “fake frame” for phones.
+       it shows one page at a time (either home.html or navbar.html).
+       On big screens, it’s hidden because we’ll use real frames.*/
     #mobileView {
-      display: none;        /* Hidden by default (desktop mode) */
-      width: 100%;          /* Full width of the screen */
-      height: 100vh;        /* Full height of the screen */
-      border: none;         /* Remove default iframe border */
+      display: none;        /* hidden until we’re in mobile view. */
+      width: 100%;          
+      height: 100vh;        
+      border: none;         /* removes the thin white line some browsers add. */
     }
   </style>
 </head>
+
+
 <body>
-  <!-- -------------------------------------------------
-       Mobile hamburger button and iframe
-       ------------------------------------------------- -->
+  <!--🎀 This part didn’t exist in the original code.
+       Before: the page only had a <frameset>.
+       Now: we using a <div> for the hamburger and an <iframe>
+       for the content. This setup appears only on small screens. -->
+
   <div id="hamburger">
     <img src="./images/hamburger.png" alt="Menu">
   </div>
 
-  <!-- Mobile iframe that will show either home.html or navbar.html -->
+  <!-- the iframe is what shows your pages on mobile -->
   <iframe id="mobileView"></iframe>
 
   <script>
-    // Grab references to the mobile hamburger and iframe
+    // these lines “find” the hamburger and iframe in the HTML.
     const hamburger = document.getElementById("hamburger");
     const mobileFrame = document.getElementById("mobileView");
 
-    /* -------------------------------------------------
-       Function: switchToMobile
-       -------------------------------------------------
-       Called when screen width is <= 768px (mobile view)
-       - Removes frameset if it exists (desktop layout)
-       - Ensures hamburger and iframe exist
-       - Shows them
-       - Loads home.html by default
-       - Sets up click toggle to switch between home.html and navbar.html
-    ------------------------------------------------- */
+
+    /* Function: switchToMobile
+       😭 What changed from the original code:
+       - old desk.html always used frameset no matter the screen.
+       - now, if the screen is small (mobile), we remove the frameset
+         and show the hamburger + iframe instead.
+
+       👀 What this does:
+       - deletes the frameset (the old left-right split).
+       - Brings back the hamburger and iframe (if they were removed).
+       - Shows home.html by default inside the iframe.
+       - lets you tap the hamburger to switch to navbar.html.*/
+
     function switchToMobile() {
-      // Remove desktop frameset if it exists
+      // delete the frameset if we have one (we don’t want frames on mobile)
       const fs = document.getElementById("deskFrameset");
       if (fs) fs.remove();
 
-      // Restore mobile elements if they are missing (in case user resized)
+      // if the hamburger/iframe were removed (e.g. resizing),
+      // put them back by rewriting body content
       if (!document.getElementById("hamburger")) {
         document.body.innerHTML = `
           <div id="hamburger"><img src="./images/hamburger.png" alt="Menu"></div>
@@ -113,90 +128,95 @@
         `;
       }
 
-      // Grab the restored elements
+      // get the re-added hamburger and iframe
       const burger = document.getElementById("hamburger");
       const frame = document.getElementById("mobileView");
 
-      // Show hamburger and iframe
+      // show them both
       burger.style.display = "block";
       frame.style.display = "block";
 
-      // Load home.html if iframe is empty
+      // if the iframe is empty (first load), show home.html
       if (!frame.src || frame.src.endsWith("about:blank")) {
         frame.src = "home.html";
       }
 
-      // Setup click to toggle between home.html and navbar.html
-      let showingNavbar = false; // Track which page is currently visible
+      // ✨ make the hamburger actually do something when tapped:
+      // it swaps between home.html and navbar.html.
+      let showingNavbar = false;
       burger.onclick = () => {
         frame.src = showingNavbar ? "home.html" : "navbar.html";
-        showingNavbar = !showingNavbar;
+        showingNavbar = !showingNavbar; // flip between true/false
       };
     }
 
-    /* -------------------------------------------------
-       Function: switchToDesktop
-       -------------------------------------------------
-       Called when screen width > 768px (desktop view)
-       - Clears mobile elements
-       - Builds a frameset with navbar (left) and home (right)
-       - Keeps the original desktop look
-    ------------------------------------------------- */
+
+    /* Function: switchToDesktop
+       😭 What changed from the OG code:
+       - Before, your HTML already contained a <frameset>.
+       - Now, we build it with JavaScript only when needed (desktop).
+       - This avoids problems with small screens and lets us “switch” views.
+
+       🎀 Wot this does:
+       - Removes any mobile elements (iframe + hamburger)
+       - Creates a frameset in memory
+       - Adds two frames inside: one for navbar.html and one for home.html
+       - Puts that frameset into the page, recreating your original layout*/
+
     function switchToDesktop() {
-      // Remove mobile elements
+      // Wipe out everything in the body (removes hamburger and iframe)
       document.body.innerHTML = "";
 
-      // Create frameset dynamically
+      // Build frameset from scratch (just like your original code)
       const fs = document.createElement("frameset");
-      fs.id = "deskFrameset";                 // Give it an ID for later reference
-      fs.setAttribute("cols", "225,*");       // 225px navbar, rest for main content
-      fs.setAttribute("border", "0");
+      fs.id = "deskFrameset";                 // Give it an ID so we can find it later
+      fs.setAttribute("cols", "225,*");       // Left frame is 225px wide
+      fs.setAttribute("border", "0");         // No borders
       fs.setAttribute("frameborder", "0");
       fs.setAttribute("framespacing", "0");
 
-      // Left frame: navbar
+      // Left frame = the old navbar.html
       const nav = document.createElement("frame");
       nav.src = "navbar.html";
       nav.name = "navbar";
       nav.setAttribute("scrolling", "auto");
       nav.setAttribute("noresize", "");
 
-      // Right frame: main content
+      // Right frame = the old home.html
       const home = document.createElement("frame");
       home.src = "home.html";
       home.name = "rightside";
       home.setAttribute("scrolling", "auto");
 
-      // Add frames to frameset
+      // Add both frames to the frameset
       fs.appendChild(nav);
       fs.appendChild(home);
 
-      // Add frameset to body
+      // Finally, attach frameset to the page
       document.body.appendChild(fs);
     }
 
-    /* -------------------------------------------------
-       Function: setupView
-       -------------------------------------------------
-       Called on page load and window resize
-       - Checks screen width
-       - Chooses mobile or desktop layout
-    ------------------------------------------------- */
+
+    /* Function: setupView
+       👀 this does whot?
+       - This decides *which layout* to use when the page loads or resizes.
+       - If the screen is smaller than 768 pixels (a phone),
+         it calls switchToMobile().
+       - Otherwise, it builds your normal two-frame layout.*/
+
     function setupView() {
-      if (window.innerWidth <= 768) switchToMobile(); // Mobile layout
-      else switchToDesktop();                           // Desktop layout
+      if (window.innerWidth <= 768) switchToMobile(); // Use mobile view
+      else switchToDesktop();                         // Use desktop view
     }
 
-    // Call setupView on page load
+    // run setupView when the page first loads.
     window.addEventListener("load", setupView);
 
-    // Call setupView whenever window is resized
+    // un setupView again if the window size changes (e.g., rotating your phone).
     window.addEventListener("resize", setupView);
 
   </script>
 </body>
 </html>
-
-
 
 
