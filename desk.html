@@ -236,9 +236,27 @@
     }
   });
 
+
+    //TO SHOW THE HAMBURGER ON ALL THE PAGES
+    function showHamburger() {
+  const burger = document.getElementById("hamburger");
+  const frame = document.getElementById("mobileView"); //that's the iframe i've named
+
+  if (window.innerWidth <= 768) {
+    burger.style.display = "block";
+    frame.style.zIndex = 1;  // ensure iframe stays behind
+  } else {
+    burger.style.display = "none";
+  }
+}
+
+window.addEventListener("load", showHamburger);
+window.addEventListener("resize", showHamburger);
+
   </script>
 </body>
 </html>
+
 
 
 
