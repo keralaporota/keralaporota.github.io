@@ -211,9 +211,30 @@
     // run setupView again if the window size changes (e.g., rotating your phone).
     window.addEventListener("resize", setupView);
 
+    
+  //THIS IS SO THAT THE LINKS FROM NAVBAR LOAD ON THE SAME TAB WHEN CLICKED FROM MOBILE bc it was opening in new tabs before this
+    //why? Because on desktop, target="rightside" loads the page into the right frame.
+    //On mobile, there’s no “rightside” frame, so the browser doesn’t know what to do — and instead opens it in a new tab 
+  // Check if on mobile
+  const isMobile = window.innerWidth <= 768;
+
+  // Get all navbar links
+  const links = document.querySelectorAll("a");
+
+  links.forEach(link => {
+    if (isMobile) {
+      // Remove target so it opens in the same page (not new tab)
+      link.removeAttribute("target");
+    } else {
+      // On desktop, keep using the frame target
+      link.setAttribute("target", "rightside");
+    }
+  });
+
   </script>
 </body>
 </html>
+
 
 
 
