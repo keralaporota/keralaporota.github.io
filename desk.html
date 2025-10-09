@@ -73,20 +73,15 @@
        On big screens, it’s hidden because we’ll use real frames.*/
     #mobileView {
       display: none;        /* hidden until we’re in mobile view. */
+     /*Makes sure the iframe has no margin/padding that could push it over the hamburger
+     This ensures the hamburger stays visible above the iframe, no matter what page is loaded inside.*/
+      z-index: 1;            /* lower than hamburger */
+      position: relative;    /* ensures z-index works */
       width: 100%;          
       height: 100vh;        
       border: none;         /* removes the thin white line some browsers add. */
     }
 
-    /*Makes sure the iframe has no margin/padding that could push it over the hamburger
-    This ensures the hamburger stays visible above the iframe, no matter what page is loaded inside.*/
-    #iframeMobile {
-     z-index: 1;            /* lower than hamburger */
-     position: relative;    /* ensures z-index works */
-     width: 100%;
-     height: 100vh;
-     border: none;
-   } 
   </style>
 </head>
 
@@ -244,6 +239,7 @@
   </script>
 </body>
 </html>
+
 
 
 
