@@ -77,6 +77,12 @@
       height: 100vh;        
       border: none;         /* removes the thin white line some browsers add. */
     }
+
+    iframe { 
+      position: relative; 
+      z-index: 1; 
+    } /*Makes sure the iframe has no margin/padding that could push it over the hamburger
+    This ensures the hamburger stays visible above the iframe, no matter what page is loaded inside.*/
   </style>
 </head>
 
@@ -234,6 +240,7 @@
   </script>
 </body>
 </html>
+
 
 
 
