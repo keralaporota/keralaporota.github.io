@@ -65,23 +65,6 @@
       height: 40px;
       cursor: pointer;      /* mouse becomes a pointer when you hover over it. */
     }
-
-    /* MOBILE IFRAME
-       💀 wozzat??
-       the <iframe> acts like a “fake frame” for phones.
-       it shows one page at a time (either home.html or navbar.html).
-       On big screens, it’s hidden because we’ll use real frames.*/
-    #mobileView {
-      display: none;        /* hidden until we’re in mobile view. */
-     /*Makes sure the iframe has no margin/padding that could push it over the hamburger
-     This ensures the hamburger stays visible above the iframe, no matter what page is loaded inside.*/
-      z-index: 1;            /* lower than hamburger */
-      position: relative;    /* ensures z-index works */
-      width: 100%;          
-      height: 100vh;        
-      border: none;         /* removes the thin white line some browsers add. */
-    }
-
   </style>
 </head>
 
@@ -199,11 +182,12 @@
     }
 
 
-    /* Function: setupView
+  /* THIS ENSURES NAVBAR AND HOME DON'T BOTH SHOW UP ON SCREEN TOGETHER
+    Function: setupView
        👀 this does whot?
         This decides *which layout* to use when the page loads or resizes.
         If the screen is smaller than 768 pixels (a phone), it calls switchToMobile().
-        Otherwise, it builds your normal two-frame layout.*/
+        Otherwise, it builds the normal two-frame layout.*/
 
     function setupView() {
       if (window.innerWidth <= 768) switchToMobile(); // Use mobile view
@@ -239,6 +223,7 @@
   </script>
 </body>
 </html>
+
 
 
 
