@@ -4,26 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About me!</title>
-
-    
-
-    <style>
-        body {
-      background-color: #b38e67;
-      background-image: url("./images/patternsbg/madraschecks.jpg");
-      background-repeat: repeat;
-      background-size:15% auto;
-      margin: 0;
-      background-repeat: repeat; /*(default) image tiles horizontally + vertically until it fills the element.*/
-      
-      text-align:justify;
-      letter-spacing: 2px;
-      margin:0;padding:0;
-    }
-    </style>
+   
+   <link rel="stylesheet" href="about.css"> 
 </head>
 
+    
 <body>
+    
+    <!-- your image button -->
+<img id="toggleImage" class="music-button"
+     src="./images/gudetamaclickme.gif" alt="music button">
+
+<!-- hidden audio element -->
+<audio id="bgMusic" src="./other media/music.mp3"></audio>
+
+<script>
+  const img = document.getElementById('toggleImage');
+  const music = document.getElementById('bgMusic');
+
+  const image1 = './images/gudetamaclickme.gif'; // default image
+  const image2 = './images/gudetamaplaying.gif'; // image when music is playing
+
+  let isPlaying = false;
+
+  img.addEventListener('click', () => {
+    if (!isPlaying) {
+      img.src = image2;
+      music.play();
+      isPlaying = true;
+    } else {
+      img.src = image1;
+      music.pause();
+      music.currentTime = 0;
+      isPlaying = false;
+    }
+  });
+</script>
     
 </body>
 </html>
