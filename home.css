@@ -39,9 +39,10 @@ img:hover {
 }
 
 .camera {
-  left: 2%;
-  top: 60%;
+  left: 3%;
+  top: 61%;
   width: 20%;
+  rotate: 4deg;
 }
 
 .envelope {
@@ -109,6 +110,7 @@ img:hover {
 	position: fixed;
 	margin: 0 3% 3% 0;
 }*/
+
 
 
 
