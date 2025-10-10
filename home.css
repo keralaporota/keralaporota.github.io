@@ -1,5 +1,5 @@
 body {
-      background:#de7862;
+      background:#b38e67;
       /* background-image: url("./images/green-classic-checkered-tablecloth2.jpg"); */
       background-image: url("./images/patternsbg/whiteredchecks.jpg");
       background-size: 15% auto;  /* width 50% of viewport, height auto */
@@ -32,18 +32,37 @@ img:hover {
 }
 
 /*DESK STUFF POSITIONS*/
+.laptop {
+  left: -1%;
+  top: -5%;
+  width: 38%;
+}
+
 .camera {
-  left: 5%;
-  top: 40%;
+  left: 2%;
+  top: 60%;
   width: 20%;
+}
+
+.envelope {
+  left: 53%;
+  top: 42%;
+  width: 34%;
+  rotate: -15deg;
+}
+
+.openbook {
+  left: 35%;
+  top: 2%;
+  width: 34%;
 }
 
 /*MP3 needs extra coding because I want it to loft on hover and be clickable only in the top right corner of the image*/ 
 /* Wrap both image and clickable area */
 .mp3-wrapper {
   position: absolute;
-  right: 5%;
-  top: 5%;
+  right: 2%;
+  top: 3%;
   width: 25%;
   display: inline-block;
 }
@@ -71,10 +90,17 @@ img:hover {
 
 
 .crochet {
-  left: 40%;
+  left: 65%;
   top: 0;
   width: 16%;
 }
+
+.sketchbook {
+  left: 20%;
+  top: 55%;
+  width: 34%;
+}
+
 
 
 /* img.kirbyvibe {
@@ -82,9 +108,6 @@ img:hover {
 	right: 0;
 	position: fixed;
 	margin: 0 3% 3% 0;
-}
+}*/
 
-#footer a{
-color: #FFC0CB;
 
-} */
