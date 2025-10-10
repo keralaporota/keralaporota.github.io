@@ -1,0 +1,80 @@
+body {
+     background-color: #b38e67;
+     background-image: url("./images/patternsbg/madraschecks.jpg");
+     background-repeat: repeat;
+     background-size:15% auto;
+     margin: 0;
+     background-repeat: repeat; /*(default) image tiles horizontally + vertically until it fills the element.*/
+     /* height: 100vh; */
+     text-align:justify;
+     letter-spacing: 2px;
+     margin:0;padding:0;
+}
+
+.slapwrapper {
+  background-image: url("./");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 30px;
+  margin-right: -20px;
+  margin-left: -55px;
+  margin-top: -10px;
+  width: 350px;
+  height: 230px;
+  rotate: -5deg;
+  z-index:5;
+  position: relative;
+}
+
+.slaptext {
+  font-size: 15px;
+  display: flex;
+  color: black;
+  margin-top: 16px;
+  margin-left: 77px;
+  width: 180px;
+  height: 92px;
+  overflow: auto;
+  rotate: 2deg;
+}
+
+.slaptext a {
+  color: blue;
+}
+
+.slapmood {
+  display: flex;
+  text-align: center;
+  color: black;
+  padding: 0.1px;
+  padding-left: 140px;
+  padding-right: 60px;
+  rotate: 1deg;
+}
+
+
+
+  .music-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    animation: bobbing 2s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+
+  .music-button:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes bobbing {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
