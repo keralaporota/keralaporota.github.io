@@ -2,7 +2,7 @@
    BODY AND TYPOGRAPHY
 ========================================== */
 body {
-  background: #0d2736;
+  /*bg colour for this was already styled in html so change there*/
   background-blend-mode: screen;
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
@@ -329,6 +329,7 @@ li.rss-item a { font-weight:bold; font-size:14px; text-decoration:none; }
   font-style: italic;
 }
 a.rss-item:last-child { display:none; }
+
 
 
 
