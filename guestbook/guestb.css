@@ -2,7 +2,7 @@
    BODY AND TYPOGRAPHY
 ========================================== */
 body {
-  background: #000000f6 url(/index_images/starbg.gif);
+  background: #0d2736;
   background-blend-mode: screen;
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
@@ -24,18 +24,6 @@ a {
 }
 
 /* ==========================================
-   SELECTION COLORS
-========================================== */
-::selection {
-  background: #719696;
-  color: white;
-}
-::-moz-selection {
-  background: #719696;
-  color: white;
-}
-
-/* ==========================================
    MAIN CONTAINERS
 ========================================== */
 #main {
@@ -52,7 +40,6 @@ a {
 }
 
 .window {
-  background: rgb(0, 0, 0) url(/index_images/starbg.gif);
   margin: 20px;
   padding: 20px;
   color: #c1edeb;
@@ -201,8 +188,7 @@ form textarea,
 .StripeElement {
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.9);
-  background-image: url(index_images/patterns/heartpattern.png);
+  background-color: rgba(255, 255, 255, 0.9); /*THE BACKGROUND COLOUR OUT OF THE COMMENT BOX*/
   padding: 0.75em 1rem;
   margin-bottom: 1.5rem;
 }
@@ -322,7 +308,7 @@ form select { text-transform: none; }
   border-radius: 20px;
 }
 .recent-comment-hdr::before {
-  content: url("http://i205.photobucket.com/albums/bb186/mhilkas/favoicons/favcoelho2.gif");
+  content: url("");
 }
 
 
