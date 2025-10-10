@@ -27,7 +27,7 @@ a {
    MAIN CONTAINERS
 ========================================== */
 #main {
-  background-color: rgb(251, 251, 251);
+  background-color: rgb(251, 251, 251); /*colour of the entire comment box*/
   border: 0px solid;
   border-color: rgba(169, 169, 169, 0);
   color: #333333;
@@ -39,14 +39,14 @@ a {
   position: relative;
 }
 
-.window {
+/* .window {
   margin: 20px;
   padding: 20px;
   color: #c1edeb;
   border-radius: 20px;
-}
+} */
 
-.paper {
+/* .paper {
   background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
   -webkit-background-size: 100% 30px;
   -moz-background-size: 100% 30px;
@@ -61,7 +61,7 @@ a {
   border-radius: 20px;
   margin: auto;
   position: relative;
-}
+} */
 
 /* ==========================================
    BUTTONS
@@ -94,7 +94,7 @@ a {
 }
 
 /* Image Buttons */
-.buttonimg {
+/* .buttonimg {
   background-color: #ffffff00; 
   border: none;
   border-radius: 10px;
@@ -103,20 +103,20 @@ a {
   text-align: center;
   display: inline-block;
   transition-duration: 0.2s;
-}
+} */
 
-.buttonimg:hover {
+/* .buttonimg:hover {
   background-color: #9ccdd600; 
   transform: translateY(2px);
   color: white;
   cursor: pointer;
-}
+} */
 
-.buttonimg:active {
+/* .buttonimg:active {
   background-color: #74abb327;
   transform: translateY(5px);
   box-shadow: 0 5px rgba(219, 205, 166, 0);
-}
+} */
 
 /* Mobile Buttons */
 .mobilebutton {
@@ -188,7 +188,7 @@ form textarea,
 .StripeElement {
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.9); /*THE BACKGROUND COLOUR OUT OF THE COMMENT BOX*/
+  background-color: rgba(255, 255, 255, 0.9); /*colour inside the textbox*/
   padding: 0.75em 1rem;
   margin-bottom: 1.5rem;
 }
@@ -329,5 +329,6 @@ li.rss-item a { font-weight:bold; font-size:14px; text-decoration:none; }
   font-style: italic;
 }
 a.rss-item:last-child { display:none; }
+
 
 
