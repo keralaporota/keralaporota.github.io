@@ -19,10 +19,12 @@ body {
     font-size:1em;
     /* margin-top:-80px; */
     width:250px;
+    padding-top: 200px;
   }
 
   /* CALENDARRR */
   .calendar {
+        float: right;
     width: 300px;
     border: 2px solid #3a2e2e;              /* dark brown border */
     border-radius: 8px;
@@ -31,6 +33,7 @@ body {
     background-color: #f9f4e8;               /* parchment tone */
     /* box-shadow: 2px 2px 8px rgba(0,0,0,0.3); */
     padding-bottom: 10px;
+    margin-right: 50px;
   }
 
   .month-year {
@@ -70,4 +73,5 @@ body {
     color: #f9f4e8;
     font-weight: bold;
     border-radius: 50%;
+
   }
