@@ -31,7 +31,7 @@ body {
 }
 
 .iframe-wrapper iframe {
-  width: 800px;
+  width: 822px;
   height: 600px;
   border: none;
   border-radius: 20px; /* smooth rounded corners */
@@ -62,3 +62,4 @@ body {
     }
 
   }
+
