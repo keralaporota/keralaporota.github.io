@@ -38,11 +38,11 @@ img:hover {
   width: 38%;
 }
 
-.camera {
+.chai {
   left: 3%;
   top: 60%;
-  width: 20%;
-  rotate: 4deg;
+  width: 23%;
+  /* rotate: 4deg; */
 }
 
 .envelope {
@@ -110,6 +110,7 @@ img:hover {
 	position: fixed;
 	margin: 0 3% 3% 0;
 }*/
+
 
 
 
