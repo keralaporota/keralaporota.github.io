@@ -6,6 +6,9 @@ body {
   background-blend-mode: screen;
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
+  background-image: url("./rainbecks.jpg");
+  background-size: 15% auto;  /* width 50% of viewport, height auto */
+  background-repeat: repeat;   /* repeat to cover the screen */
 }
 
 h1 {
@@ -329,6 +332,7 @@ li.rss-item a { font-weight:bold; font-size:14px; text-decoration:none; }
   font-style: italic;
 }
 a.rss-item:last-child { display:none; }
+
 
 
 
