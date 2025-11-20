@@ -1,0 +1,207 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gallery</title>
+
+  <link rel="stylesheet" href="photos.css">
+</head>
+
+<body>
+  <div class="gallery">
+    <div class="artwork">
+      <img src="./images/photos/_DSC1455.jpg" alt="Artwork 1">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/goat days.jpg" alt="Artwork 2">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/red whiskered bulbul head tilt.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/rwbulbul on wire.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/woodpecker looking up.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/grey hornbill.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/ics_032cropped.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/woodpecket profile.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div>
+
+    <div class="artwork">
+      <img src="./images/photos/sunbird.jpg" alt="Artwork 3">
+      <div class="caption"></div>
+    </div> -->
+    <!-- Duplicate artwork blocks as needed -->
+  <!-- </div> -->
+
+  <!-- Optional Lightbox Script -->
+  <!-- <div class="lightbox" id="lightbox">
+    <img src="" alt="">
+  </div> -->
+
+  <!-- <script>
+    // Simple lightbox toggle
+    const lightbox = document.getElementById('lightbox');
+    const imgs = document.querySelectorAll('.artwork img');
+
+    imgs.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightbox.querySelector('img').src = img.src;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+  </script>
+</body>
+</html> -->
+
+<!-- 🧱 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masonry Art Gallery</title>
+<style>
+  body {
+    margin: 0;
+    /* background-color: #f8f6f1; */
+    background-image: url('./images/patternsbg/cardboard.png');
+    font-family: sans-serif;
+  }
+
+  .gallery {
+    column-count: 3;
+    column-gap: 20px;
+    padding: 40px;
+  }
+
+  .gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 3px;
+    overflow: hidden;
+    break-inside: avoid;
+    /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 1000px) {
+    .gallery {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery {
+      column-count: 1;
+    }
+  }
+
+  #lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5); /* change opacity of img zoomed bg with the last number */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#lightbox.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 6px;
+}
+</style>
+</head>
+<body>
+
+  
+<div class="gallery">
+  <div class="gallery-item"><img src="./images/photos/woodpecket profile.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/sunbird.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/ics_032cropped.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/talaopali.jpg" alt=""></div>
+  
+  <div class="gallery-item"><img src="./images/photos/DSC_1586.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/goat days.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/treesky.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/rwbulbul on wire.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/grey hornbill.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/treesky.jpg" alt=""></div>
+  <div class="gallery-item"><img src="./images/photos/ics_028.jpg" alt=""></div>
+</div>
+
+
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+
+  document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", () => {
+      lbImg.src = img.src;
+      lb.classList.add("show");
+    });
+  });
+
+  lb.addEventListener("click", () => {
+    lb.classList.remove("show");
+  });
+</script>
+
+</body>
+</html>
