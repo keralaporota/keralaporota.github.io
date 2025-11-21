@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+  }
+
+/* @font-face {
+    font-family: 'Digistick';
+    src: url('../fonts/Digistick.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+  /* header font */
+  /* h1, h2, h3, h4, h5, p {
+    font-family: 'Digistick';
+  }
+  
+  p, details {
+    font-family: 'Courier';
+    margin: 15px;
+  }
+
+  a, summary {
+    color: #2ca079;
+    text-decoration: none;
+  }
+  
+  a:hover, summary:hover {
+    color: orangered;
+    text-decoration: none;
+  } */
+
+::-moz-selection { /* Code for Firefox */
+  color: black;
+  background: rgb(93, 221, 187);
+}
+
+::selection {
+  color: black;
+  background: rgb(93, 221, 191);
+} 
+  
+  body {
+    /* background-image: url(/img/halloween/spiderwebflipedit.gif), url(/img/movieroom.png), url(/img/rain.gif); */
+    background-size: auto, cover, auto;
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: top right, top, top;
+    min-width: 1430px;
+    background-attachment: fixed;
+    margin:0px;
+  }
+  
+  .wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1030px;
+    position: relative;
+    display: flex;
+  }
+
+  .page {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* .table {
+    pointer-events: none;
+    user-select: none;
+    width: 850px;
+    position: absolute;
+    top: 130px;
+  } */
+
+  /* .skeledog {
+    width: 200px;
+    position: absolute;
+    top: -10px;
+    left: 650px;
+    transition: .3s;
+  } */
+
+  /* .melody {
+    width: 120px;
+    position: absolute;
+    top: 0px;
+    left: 580px;
+    transition: .3s;
+  } */
+
+/* .melody:hover, .skeledog:hover { 
+  rotate: -10deg; 
+  transition: .3s;
+} */
+
+  .tv {
+    pointer-events: none;
+    user-select: none;
+    /* width: 620px; */
+    /* height: 645px; */
+    position: absolute;
+    top: 65px;
+    left: -150px;
+  }
+
+  .vhswrapper {
+    position: absolute;
+    left: 570px;
+    color: rgb(58, 58, 58);
+    width: 250px;
+    text-align:center;
+  }
+
+  .vhs {
+    width: 230px;
+    transition: .3s;
+  }
+
+  .vhs:hover {
+    width: 250px;
+    transition: .3s;
+    -webkit-filter: drop-shadow(0 0 10px #33e90a);
+    filter: drop-shadow(0 0 10px #33e90a);
+  }
+
+  .screen {
+    background-image: url(./images/tvstandby.gif);
+    background-size: cover;
+    width: 560px;
+    height: 360px;
+    position: absolute;
+    top: 146px;
+    left:-120px;
+    z-index:-1;
+  }
+
+  #menu {
+    background-color: rgba(255, 111, 111, 0.8);
+    border: 5px orange;
+    border-radius: 20px;
+    height: 400px;
+    width: 300px;
+    position: relative;
+    margin-right: -200px;
+    left: 0px;
+    top: 200px;
+    padding: 11px;
+    display: none;
+    overflow: scroll;
+    color: papayawhip;
+  }
+
+  .menutext {
+    display: none;  
+  }
+
+  .pngs {
+    width: 850px;
+    position: relative;
+    z-index: 99;
+  }
+
+  .back {
+    position: fixed;
+    top:0px;
+    margin: 20px;  
+  }
+
+  .corner {
+    position: relative;
+    top:0px;
+    left: 0px;
+    color: #15755f;
+    font-size: 8px;
+    display: none;
+  }
+
+  .back a {
+    color: #15755f;
+  }
+
+  .back a:hover {
+    color: papayawhip;
+  }
+
+  .indent {
+    margin-left: 15px;
+  }
+
+/* SCREEN-DOOR FX */
+/* body::before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 25%, rgba(0, 0, 0, 0.25) 25%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  z-index: 999;
+  pointer-events: none
+} */
+
+/* COLOR BLEED */
+body {
+  text-shadow:
+  2px 0 1px rgba(0, 30, 255, 0.1),
+  -2px 0 1px rgba(255, 0, 80, 0.1),
+  0 0 1px
+}
+img {
+  filter:
+  drop-shadow(4px 0 2px rgba(0, 30, 255, 0.1))
+  drop-shadow(-4px 0 2px rgba(255, 0, 80, 0.1))
+}

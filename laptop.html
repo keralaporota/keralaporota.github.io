@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the tv room</title>
+    <link href="laptop.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+<body>
+  <div class="back">
+    <h2><a href="home.html">back</a></h2>
+  </div>
+  <div class="wrapper">
+    <div class="pngs">
+          <!-- <img class="table" src="/img/consoletable.png"> -->
+          <img class="tv" src="./images/tv.png">
+          <iframe class="screen" src="" style="border:none;" name="screen" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          
+          <div class="vhswrapper" style="top: 210px;">
+              <h3>youtube favs</h3>
+              <img class="vhs" src="./images/VHS_Tapes.png" onclick="show('youtube'); menu()">
+          </div>
+          <!-- <img class="melody" src="/img/melody.png">
+          <img class="skeledog" src="/img/skeledog.png"> -->
+      </div>
+      <div id="menu">
+        <div id="vids"></div>
+        
+        <div class="menutext" id="youtube">
+            <h2>youtube favs</h2>
+            <h3>long videos</h3>
+              <p><a href="https://youtu.be/2AJO0qd_0UQ?si=Pom8mhhIdtcA2E4L" target="screen">The Thief and the Cobbler Recobbled Cut Mk4</a></p>
+              <p><a href="https://youtu.be/L3JPAtxvMc0?si=poQ2zcENkre8Dvpm" target="screen">The Treasure Hunt & The Water Nymph | Moomin 90s | DOUBLE FULL EPISODE</a></p>
+            <h3>short videos</h3>
+              <p><a href="https://youtu.be/2AJO0qd_0UQ?si=h1Hlh-VkkSTbFLt8" target="screen">Cinderella's Mice Are Traumatized (Dimension 20 Animated)</a></p>
+              <p><a href="https://youtu.be/DxYbfJUOOMQ?si=50S4rJVQxAufT7pn" target="screen">National Award Winning Film | Kandittund! (Seen It!) | Studio Eeksaurus</a></p>
+              <p><a href="https://www.youtube-nocookie.com/embed/fNcYtcVn-8k?si=dromDbkVux2d6rqh" target="screen">Code Geass: Soup Store</a></p>
+        </div>
+      </div>
+
+    </div>
+
+  <script>
+    function show(characters) {
+      document.getElementById('vids').innerHTML = document.getElementById(characters).innerHTML;
+     }
+  </script>
+  <script>
+    function menu() {
+    document.getElementById("menu").style.display="block";}
+  </script>
+  <script>
+    function closemenu() {
+    document.getElementById("menu").style.display="none";}
+  </script>
+</body>
+</html>
