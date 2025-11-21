@@ -22,7 +22,7 @@ img {
 }
 
 /* Hover effect */
-img:hover {
+img:not(.mp3player):hover {
   transform: scale(1.05);
   /* filter: drop-shadow(0 0 0 red); 0 offsets, 0 blur, color = border color */
   filter: 
@@ -110,6 +110,7 @@ img:hover {
 	position: fixed;
 	margin: 0 3% 3% 0;
 }*/
+
 
 
 
