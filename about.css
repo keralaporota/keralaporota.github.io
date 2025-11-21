@@ -9,7 +9,7 @@ h1 {
   margin: auto;
   text-align: center;
   padding: 20px;
-  color: rgb(255, 255, 240);
+  color: rgb(0, 0, 0);
 }
 
 .softimage {
@@ -25,7 +25,7 @@ h1 {
 
   /* MENU STYLING BABY! this is all from w3 schools */
   .topnav {
-    background-color: rgba(200, 207, 217, 0.852);
+    background-color: rgba(243, 247, 223, 0.7);
     overflow: hidden;
     border-radius: 20px;
     transition-duration: 0.2s;
@@ -668,4 +668,5 @@ a {
     border-radius: 10px;
     padding: 2px 10px 2px 10px;
     margin: 5px;
+
   }
