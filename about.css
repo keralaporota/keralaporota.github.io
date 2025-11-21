@@ -1,0 +1,671 @@
+body {
+  background: #000000f6 url(./images/patternsbg/starchecks.jpg);
+  background-blend-mode: screen;
+  font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+  }
+
+h1 {
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  color: rgb(255, 255, 240);
+}
+
+.softimage {
+  border-radius: 10px;
+}
+
+    .starlist ul,li { 
+      list-style-type:disc;
+      list-style-image: url(''); 
+      list-style-position: outside;
+      margin: 5px;
+    }
+
+  /* MENU STYLING BABY! this is all from w3 schools */
+  .topnav {
+    background-color: rgba(200, 207, 217, 0.852);
+    overflow: hidden;
+    border-radius: 20px;
+    transition-duration: 0.2s;
+    margin: auto;
+    max-inline-size: 1000px;
+    
+  }
+
+  /* Add an active class to highlight the current page */
+  .topnav a.active {
+    background-color: #5d9abd;
+    color: white;
+    
+  }
+
+
+  #main {
+    background-color:rgb(251, 251, 251);
+    border: 0px solid;
+    border-color:rgba(169, 169, 169, 0);
+    color:#333333;
+    padding: 1% 5%;
+    max-width: 750px;
+    height:auto;
+    border-radius: 20px;
+    margin: auto;
+    position: relative;
+    }
+
+  .window {
+    background: rgb(0, 0, 0) url(./images/patternsbg/starchecks.jpg);
+    margin: 20px;
+    padding: 20px;
+    color: #c1edeb;
+    border-radius: 20px;
+  }
+
+  .paper {
+    background: rgb(236, 235, 231);
+    background: -webkit-linear-gradient(top, #DFE8EC 0%, whitesmoke 8%) 0 57px;
+    background: -moz-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+    background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+    -webkit-background-size: 100% 30px;
+    -moz-background-size: 100% 30px;
+    -ms-background-size: 100% 30px;
+    background-size: 100% 30px;
+    border: 0px solid;
+    border-color:rgba(169, 169, 169, 0);
+    color:#333333;
+    padding: 5% 5% 5% 5%; 
+    max-width: 750px;
+    height:auto;
+    border-radius: 20px;
+    margin: auto;
+    position: relative;
+    }
+    
+    
+
+    /*IT'S BUTTON TIME FOR ME BABY*/
+    .button {
+      background-color: #74abb3; 
+      font-family: 'Roboto Mono', monospace;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      padding: 5px;
+      text-align: center;
+      text-decoration:none;
+      display: inline-block;
+      font-size: 14px;
+      transition-duration: 0.2s;
+      margin: 5px;
+    }
+
+      .button:hover {
+        background-color: #9ccdd6; 
+        color: white;
+        cursor: pointer;
+      }
+
+      .button:active {
+        background-color: #74abb3;
+        box-shadow: 0 5px rgba(219, 205, 166, 0.437);
+        transform: translateY(4px);
+      }
+
+      /*button image settings*/
+      .buttonimg {
+        background-color: #ffffff00; 
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 5px;
+        text-align: center;
+        display: inline-block;
+        transition-duration: 0.2s;
+      }
+  
+        .buttonimg:hover {
+          background-color: #9ccdd600; 
+          transform: translateY(2px);
+          color: white;
+          cursor: pointer;
+        }
+  
+        .buttonimg:active {
+          background-color: #74abb327;
+          transform: translateY(5px);
+          box-shadow: 0 5px rgba(219, 205, 166, 0);
+        }
+
+
+
+    input {
+      font-family: 'Roboto Mono', monospace;
+      border-radius: 5px;
+      border-color: #74abb3;
+      margin-right: 10px;
+    }
+    
+    #statuscafe {
+      color:#11274d;
+      height:auto;
+      padding: 1%;
+      }
+
+    .flex {
+      display: flex !important;
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-bottom: 50px;
+    }
+
+    .twoCLtext {
+      max-width: 300px;
+      padding-right: 3%;
+    }
+
+    .twoCRtext {
+      max-width: 300px;
+      padding-left: 3%;
+    }
+
+    .updatescroll {
+      height: 200px; /* maximum height of the box, feel free to change this! */
+      max-width: 300px;
+      overflow-y: scroll;
+  }
+  
+    dt {
+      background: #cfe0e6;
+      border-radius: 5px;
+      color: #1b6575;
+      clear: both;
+      font-weight: 700;
+      max-width:fit-content;
+      margin-top: 5%;
+    }
+  
+    .svg-container {
+      max-width: 100%;
+      resize: both;
+      overflow: auto;
+      border: 2px dashed rgb(54, 139, 175);
+     }
+     
+
+center {
+  text-align: center;
+  }
+  
+a {
+  color: #2092b1;
+  }
+  
+  /*THIS IS FOR FEED STYLING*/
+  /* hides the title */
+  p.rss-title {
+    display:none;
+  }
+  li.rss-item {
+    list-style-type:none;   /* this removes the bullet points */
+    margin-bottom:20px; /* adds spacing under entry content */
+  }
+
+  li.rss-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* this styles the blog title link */
+  li.rss-item a {
+    font-weight:bold;
+    font-size:14px;
+    text-decoration:none; /* removes underline */
+  }
+  /* this styles the date */
+  .rss-date {
+    /* need this to add padding */
+    display:inline-block;
+  padding-top:10px;
+    padding-bottom:10px;
+    font-style:italic;
+  }
+
+  a.rss-item:last-child {
+    display:none;
+  }
+
+  /*feed styling end*/
+
+  .screen {
+    position: relative;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: small;
+    width: 300px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 5%;
+    text-align: center;
+    box-shadow: 5px 5px rgb(110, 146, 152);
+    margin: auto;
+  }
+
+  /*this is for responsive iframes, like for my games*/
+  iframe {
+    overflow-x: hidden !important; 
+    overflow-y: scroll !important; 
+    -webkit-overflow-scrolling:touch !important; 
+  }
+
+  .responsive-iframe {
+    position: relative;
+    margin: auto;
+    max-width: 100%;
+    border-radius: 10px;
+    overflow-y: scroll !important;
+  }
+
+  .buttoncontainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*width: calc(var(--cell-width) * 5 + 30px);*/
+    height: 400px;
+    overflow-y: scroll;
+  }
+
+    .buttoncontainer a {
+      padding: 4px;
+    }
+
+    .bookcontainer {
+      display: flex;
+      flex-wrap: wrap;
+      height: 600px;
+      overflow-y: scroll;
+      justify-content: space-evenly;
+    }
+  
+      .bookcontainer a {
+        margin: 4px;
+      }
+  
+
+    /*paper yw widget design*/
+    .yw-widget-full {
+      padding: 20px 20px 20px 50px;
+      max-width: clamp(200px, 250px, 300px);
+      position: relative;
+      background: white;
+      background: -webkit-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: -moz-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      -webkit-background-size: 100% 30px;
+      -moz-background-size: 100% 30px;
+      -ms-background-size: 100% 30px;
+      background-size: 100% 30px;
+      border-radius: 20px;
+
+    }
+      
+      .yw-widget-full::after {
+        content:''; 
+        position:absolute; 
+        width:0px; 
+        top:0; 
+        left:39px;
+        bottom:0;
+        border-left:1px solid #F8D3D3;
+      }
+
+  /* form reset */
+    form input,
+    form select,
+    form textarea,
+    form fieldset,
+    form optgroup,
+    form label,
+    .StripeElement {
+      font-family: inherit;
+      font-size: 100%;
+      color: inherit;
+      border: none;
+      border-radius: 0;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    form label,
+    form legend {
+      font-size: 0.825rem;
+      margin-bottom: 0.5rem;
+    }
+      /* border, padding, margin, width */
+      form input,
+      form select,
+      form textarea,
+      .StripeElement {
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.9);
+        background-image: url(index_images/patterns/heartpattern.png);
+        padding: 0.75em 1rem;
+        margin-bottom: 1.5rem;
+      }
+      form input:focus,
+      form select:focus,
+      form textarea:focus,
+      .StripeElement:focus {
+        background-color: white;
+        outline-style: solid;
+        outline-width: thin;
+        outline-color: gray;
+        outline-offset: -1px;
+      }
+      form [type="text"],
+      form [type="email"],
+      .StripeElement {
+        width: 100%;
+      }
+      form [type="button"],
+      form [type="submit"],
+      form [type="reset"] {
+        width: auto;
+        cursor: pointer;
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        transition: 0.2s;
+      }
+      form [type="button"]:focus,
+      form [type="submit"]:focus,
+      form [type="reset"]:focus {
+        outline: none;
+      }
+
+      form select {
+        text-transform: none;
+      }
+
+      /*book flip css - from yancymin!*/
+    .box-out {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .book {
+        width: 180px;
+        height: 255px;
+        background-color: #637f92;
+        transition: all .2s ease-in-out;
+        transform-origin: left center 0px;
+        transform-style: preserve-3d;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        overflow: hidden;
+        margin: auto;
+    }
+    
+      /*------ cover-pic ------*/
+      
+      .artdiary {
+          background: url('/index_images/artdiary.png');
+          background-size: cover;
+      }
+      .bookdiary {
+        background: url('/index_images/bookdiary.png');
+        background-size: cover;
+    }
+
+    .comicdiary {
+      background: url('/index_images/comicscover.png');
+      background-size: cover;
+  }
+
+          
+      /* ----- hover ----- */
+      
+      .book:hover {
+          cursor: pointer;
+          transform: rotateY(-28deg) rotateZ(-2deg) scale(1.02);
+          box-shadow: 1px 3px 2px #356185, 20px 8px 0 #637f92;
+          /* transform: scale(1.02); */
+      }
+      
+      .book:hover::after {
+          content: " ";
+          display: block;
+          opacity: 1;
+          width: 172px;
+          height: 255px;
+          position: relative;
+          left: 8px;
+          background: linear-gradient(-180deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, 0) 60%);
+      }
+      
+      .book:hover::before {
+          transform: translateY(9px);
+          opacity: 1;
+      }    
+
+    /*comment box*/
+    #HCB_comment_box {
+      font-family: 'Roboto Mono', monospace;
+    }
+    
+    #HCB_comment_box .comment {      
+      padding: 10px 20px 10px;
+      font-family: 'Roboto Mono', monospace;
+      position: relative;
+      background: white;
+      background: -webkit-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: -moz-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      -webkit-background-size: 100% 30px;
+      -moz-background-size: 100% 30px;
+      -ms-background-size: 100% 30px;
+      background-size: 100% 30px;
+      border-radius: 20px;
+      box-shadow: #d4e2ea;
+
+    }
+    
+    #HCB_comment_box blockquote::before {
+        content:""; 
+        z-index:-1; 
+        margin:0 1px; 
+        width:706px; 
+        height:10px; 
+        position:absolute; 
+        bottom:-3px; 
+        left:0; 
+        background:white; 
+        border:1px solid #B5B5B5;
+      }
+
+    #HCB_comment_box #hcb_form_content,
+    #HCB_comment_box #hcb_form_email,
+    #HCB_comment_box #hcb_form_name,
+    #HCB_comment_box #hcb_form_website,
+    #HCB_comment_box #hcb_submit,
+    #HCB_comment_box .author-name,
+    #HCB_comment_box .hcb-comment-body,
+    #HCB_comment_box .hcb-comment-tb a, 
+    #HCB_comment_box #hcb_form textarea, 
+    #HCB_comment_box #hcb_form #hcb_form_name {
+      border-radius: 10px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 14px;
+    }
+
+    .recent-comment {      
+      padding: 10px 20px 10px;
+      font-family: 'Roboto Mono', monospace;
+      position: relative;
+      background: white;
+      background: -webkit-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: -moz-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+      -webkit-background-size: 100% 30px;
+      -moz-background-size: 100% 30px;
+      -ms-background-size: 100% 30px;
+      background-size: 100% 30px;
+      border-radius: 20px;
+      box-shadow: #d4e2ea;
+
+    }
+
+    .recent-comment-hdr {
+      background: #c1e0e4;
+      padding: 5px;
+      background-repeat: no-repeat;
+      background-position-x: 4px;
+      background-position-y: 8px;
+      border-radius: 20px;
+    }
+
+    .recent-comment-hdr::before {
+      content: url("http://i205.photobucket.com/albums/bb186/mhilkas/favoicons/favcoelho2.gif");
+    }
+
+  /*tool tip stuff*/
+  .tooltip {
+    display:inline-block;
+    position:relative;
+    border-bottom:1px dotted #666;
+    text-align:left;
+}
+
+.tooltip h3 {margin:12px 0;}
+
+.tooltip .bottom {
+    min-width:200px;
+    /*max-width:400px;*/
+    top:40px;
+    left:50%;
+    transform:translate(-50%, 0);
+    padding:20px;
+    color:#666666;
+    background-color:#EEEEEE;
+    font-weight:normal;
+    font-size:13px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    display:none;
+}
+
+.tooltip:hover .bottom {
+    display:block;
+}
+
+.tooltip .bottom img {
+    width:400px;
+}
+
+.tooltip .bottom i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+}
+
+.tooltip .bottom i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color:#EEEEEE;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+
+#checkedoutbooks {
+  position:relative;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ede9e2;
+  text-decoration: none;
+}
+
+  .checkedoutbooks_title {
+    text-align: center;
+    border-bottom: 3px dashed #8a8680;
+    letter-spacing: 3px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .checkedoutbooks_title:hover {
+    transform: translateY(4px);
+  }
+
+  .booklist_item{
+    padding: 5px 10px 0px 10px;
+    font-size: small;
+    text-decoration: none;
+  }
+
+  .booklist_item::marker{
+    content: 'â­ ';
+  }
+
+  .YACSSTooltip {
+      border: none !important;
+      background-color:#2f647d !important;
+      border-radius:5px;
+      padding:5px 0;
+      color:#fff;
+      font-size:12px Arial;
+      max-width:250px;
+      line-break:auto;
+      word-break:normal;
+      word-spacing:0px;
+      white-space:normal;
+      text-align:center;
+      overflow-wrap:normal;
+    }
+    
+  /*stickers lol*/
+  .sticker_topright {
+    position:absolute;
+    max-width: 50%;
+    top: 10%;
+    left: 80%;
+  }
+
+  .sticker_midleft {
+    position:absolute;
+    max-width: 30%;
+    top: 50%;
+    left: -10%;
+  }
+
+    .sticker_bottomright {
+    position: absolute;
+    bottom: -10%;
+    left: 80%;
+  }
+
+  /*feedroll stuff*/
+  .rss-date {
+    color: white;
+    background-color: #649495;
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+    margin: 5px;
+  }
