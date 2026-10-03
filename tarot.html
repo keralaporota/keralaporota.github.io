@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tarot</title>
+
+    <link rel="icon" type="image/png" href="./images/bread.png">
+
+    <!-- Jacquard 12 = the title font (same one as the links + darkroom pages) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/tarot.css">
+    <link rel="stylesheet" href="./css/back-to-room.css">
+</head>
+
+<body>
+
+    <!-- way back to my room. looks are in css/back-to-room.css -->
+    <a class="back-to-room" href="./room.html">&larr; <span class="long">back to my </span>room</a>
+
+  <div class="content-area">
+
+    <div class="top-row">
+
+      <!-- ============ HERO: title + intro ============ -->
+      <header class="tarot-hero paper">
+        <h1 class="page-title">Tarot</h1>
+        <p class="tarot-intro">I don't believe in this kind of thing much, but am nonetheless enthralled by it (also, I love jjba and lotm).<br>Think of a question, shuffle the deck, and pick your cards.</p>
+      </header>
+
+
+      <!-- ============ SETUP: which reading + the two tick boxes ============
+           the "daily card / 3 cards / speed..." buttons get made by tarot.js
+           from the READINGS list at the top of that file. the line under them
+           (readingAbout) is that reading's description, tarot.js fills it in -->
+      <form class="setup paper" id="setup" onsubmit="return false">
+
+        <p class="setup-label" id="readingLabel">which reading?</p>
+        <div class="reading-choice" id="readingChoice" role="radiogroup" aria-labelledby="readingLabel"></div>
+        <p class="reading-about" id="readingAbout"></p>
+
+        <label class="check">
+          <input type="checkbox" id="allowReversed" checked>
+          some cards can come out upside down
+        </label>
+
+        <!-- ticked = shuffle only the 22 major arcana (The Fool to The World).
+             to have it ticked when the page opens, add the word checked like the box above -->
+        <label class="check">
+          <input type="checkbox" id="majorOnly">
+          major arcana only (22 cards)
+        </label>
+
+      </form>
+
+      <!-- the two little paper tags under the setup box -->
+      <div class="side-tags">
+        <!-- goes to the page with every card + what it means -->
+        <a class="deck-link paper" href="./tarot-deck.html">look through all 78 cards</a>
+
+        <!-- switches the card sounds on/off (tarot.js changes the words + remembers the choice) -->
+        <button class="sound-btn paper" id="soundBtn" type="button" aria-pressed="true">sound: on</button>
+      </div>
+
+    </div>
+
+
+    <!-- ============ THE TABLE: where the cards are laid out ============ -->
+    <section class="table" aria-label="the cards">
+
+      <!-- the line that tells you what to do next (tarot.js changes the words) -->
+      <p class="prompt paper" id="prompt" aria-live="polite">Shuffle the deck to begin.</p>
+
+      <!-- the empty places your picked cards land on (made by tarot.js, shown after shuffling) -->
+      <div class="spread" id="spread" hidden></div>
+
+      <!-- the deck, before shuffling -->
+      <div class="deck" id="deck" title="shuffle the deck"></div>
+
+      <!-- the cards spread face down, after shuffling (made by tarot.js) -->
+      <div class="ribbon" id="ribbon" hidden></div>
+
+      <div class="actions">
+        <button class="btn btn-main" id="shuffleBtn" type="button">Shuffle the deck</button>
+        <button class="btn btn-main" id="revealBtn" type="button" hidden>Turn over all</button>
+        <button class="btn" id="againBtn" type="button" hidden>Start over</button>
+      </div>
+
+    </section>
+
+
+    <!-- ============ THE READING: fills in as you turn cards over ============ -->
+    <section class="reading paper" id="reading" hidden>
+      <h2 class="reading-title">The reading</h2>
+      <div class="entries" id="entries" aria-live="polite"></div>
+
+      <!-- only shows up when a reversed card is in the reading (tarot.js un-hides it) -->
+      <p class="reversed-note" id="reversedNote" hidden>reversed = the card came out upside down. it's read as the same card but blocked, turned inward or overdone, not simply as the opposite.</p>
+    </section>
+
+
+    <!-- ============ CREDITS ============ -->
+    <p class="credits paper">
+      cards: the Rider&ndash;Waite&ndash;Smith deck, drawn by Pamela Colman Smith in 1909 (public domain).
+      meanings: based on A. E. Waite's <i>The Pictorial Key to the Tarot</i> (1910) and how the cards are usually read today.
+      the speed, romance, moon, sun and general readings are borrowed from the <i>Clow Card Fortune Book</i>, which I found through <a href="https://cardcaptor.zucchini.cc/" target="_blank" rel="noopener">this Clow Card site</a>.
+    </p>
+
+  </div>
+
+
+  <!-- the deck (card names + meanings), then the code that runs the page -->
+  <script src="./js/tarot-cards.js"></script>
+  <script src="./js/tarot.js"></script>
+
+</body>
+</html>

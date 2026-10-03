@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tarot: the deck</title>
+
+    <link rel="icon" type="image/png" href="./images/bread.png">
+
+    <!-- Jacquard 12 = the title font (same one as the tarot page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/tarot-deck.css">
+    <link rel="stylesheet" href="./css/back-to-room.css">
+</head>
+
+<body>
+
+    <!-- way back to my room. looks are in css/back-to-room.css -->
+    <a class="back-to-room" href="./room.html">&larr; <span class="long">back to my </span>room</a>
+
+  <div class="content-area">
+
+    <!-- ============ HERO: title + intro + the way back ============ -->
+    <header class="deck-hero paper">
+      <h1 class="page-title">The deck</h1>
+      <p class="deck-intro">All 78 cards. Click one to see what it means, the right way up and reversed.</p>
+      <a class="back-link" href="./tarot.html">back to the reading table</a>
+    </header>
+
+
+    <!-- ============ THE CARDS ============
+         empty on purpose: tarot-deck.js fills this in from tarot-cards.js,
+         one section per suit (major arcana, wands, cups, swords, pentacles) -->
+    <main id="suits"></main>
+
+
+    <!-- ============ THE POP-UP for one card ============
+         also empty: tarot-deck.js writes the card's picture + meanings in here
+         when a card gets clicked -->
+    <dialog class="card-sheet paper" id="cardSheet" aria-labelledby="sheetName">
+      <button class="sheet-close" id="sheetClose" type="button">close</button>
+      <div class="sheet-body" id="sheetBody"></div>
+    </dialog>
+
+  </div>
+
+
+  <!-- the deck (card names + meanings), then the code that lays this page out -->
+  <script src="./js/tarot-cards.js"></script>
+  <script src="./js/tarot-deck.js"></script>
+
+</body>
+</html>
