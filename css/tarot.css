@@ -1,0 +1,651 @@
+/* =====================================================
+   TAROT PAGE
+   Goes with tarot.html (+ js/tarot.js and js/tarot-cards.js)
+
+   How the page is put together:
+   - a pink star-grid tablecloth background (the "table")
+   - title + setup on scraps of cream paper, in a column on the left
+     (on a phone they stack on top instead)
+   - the deck, which spreads out face down under the places your cards land on
+   - the reading on its own sheet of paper at the bottom
+   ===================================================== */
+
+
+/* ---------- COLOURS + SIZES (change them all here) ---------- */
+:root {
+  --paper: #f7f1e2;        /* cream paper (same as the other pages) */
+  --ink: #1e1e1e;          /* main text colour */
+  --faded: #6b5c45;        /* small labels */
+  --indigo: #2f34ad;       /* title + main buttons (matches the card backs) */
+  --rust: #c1502f;         /* the word "reversed" + little accents */
+  --cloth: #bc7e7a;        /* pink of the tablecloth (shows while the picture loads) */
+
+  /* the back of the cards. swap the file name to use your own drawing */
+  --card-back: url("../images/tarot/back.svg");
+
+  /* SIZES - in clamp(smallest, ideal, biggest) the middle number is the one to change */
+  --card-w: clamp(96px, 14vw, 170px);     /* width of the cards you picked */
+  --ribbon-w: clamp(56px, 7vw, 92px);     /* width of the face-down cards you pick from */
+  --strip: clamp(14px, 2vw, 24px);        /* how much of each face-down card peeks out */
+  --card-shape: 7 / 12;                   /* width / height of a card (the pictures are 350 x 600) */
+  --flip-time: 0.7s;                      /* how long a card takes to turn over */
+}
+
+
+/* ---------- PAGE BASICS ---------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+* { box-sizing: border-box; }
+
+/* anything marked "hidden" in the HTML stays hidden */
+[hidden] { display: none !important; }
+
+body {
+  color: var(--ink);
+  font: 14px/1.6 "Courier New", Courier, monospace;
+}
+
+/* CONTENT AREA - the whole page. no navbar here, the way back is the
+   back-to-room button (css/back-to-room.css) */
+.content-area {
+  min-height: 100vh;
+  background: var(--cloth);
+  background-image: url("../images/patternsbg/pinkstar-tile.jpg");   /* the tablecloth. it's my pinkstar.jpg trimmed so it repeats w/out a seam (old one was starchecks-tile.jpg) */
+  background-size: max(36%, 300px) auto;                           /* bigger % = bigger squares (300px = smallest they go on phones) */
+  background-repeat: repeat;
+  padding: clamp(20px, 4vw, 56px);
+}
+
+
+/* ---------- PAPER TEXTURE (on every cream box) ---------- */
+.paper {
+  background-color: var(--paper);                                     /* shows while the image loads */
+  background-image: url("../images/papertextures/paper-cream-web.jpg");
+  background-size: 1500px auto;                                       /* smaller number = finer grain */
+  background-repeat: repeat;
+}
+
+/* start each box at a different spot on the paper so they don't all look the same */
+.setup   { background-position: 300px 200px; }
+.reading { background-position: 700px 450px; }
+
+
+/* ---------- TOP ROW (title box + setup box) ----------
+   on a wide screen these two sit in a narrow column on the LEFT and the
+   cards get the rest of the page (that part is in "WIDE SCREENS" near the bottom).
+   on a narrow screen / phone they just stack above the cards. */
+.top-row {
+  display: flex;
+  flex-wrap: wrap;            /* setup drops under the title on narrow screens */
+  align-items: flex-start;
+  gap: clamp(16px, 2.5vw, 32px);
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+
+.tarot-hero {
+  padding: clamp(16px, 3vw, 32px);
+  transform: rotate(-1deg);   /* slightly crooked, like it was put down by hand */
+}
+
+.page-title {
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+  color: var(--indigo);
+  margin: 0 0 0.2em;
+  letter-spacing: 1px;
+}
+
+.tarot-intro {
+  margin: 0;
+  max-width: 40ch;   /* ch = about one letter wide, so this is line length */
+}
+
+
+/* ---------- SETUP BOX (which reading + the two tick boxes) ---------- */
+.setup {
+  padding: clamp(14px, 2vw, 22px);
+  width: min(100%, 380px);
+}
+
+.setup-label {
+  display: block;
+  margin: 0 0 4px;
+  font-weight: bold;
+}
+
+/* "daily card / 3 cards / speed..." buttons */
+.reading-choice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+/* the real round radio button is hidden, the label is what you click */
+.reading-choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reading-choice label {
+  padding: 4px 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 2px solid var(--ink);
+  cursor: pointer;
+}
+
+/* the one that is switched on */
+.reading-choice input:checked + label {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.reading-choice input:focus-visible + label {
+  outline: 3px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+/* the description of whichever reading is picked ("7 cards. For when love is...") */
+.reading-about {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--faded);
+}
+
+/* the row of little paper tags under the setup box */
+.side-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* "look through all 78 cards" */
+.deck-link {
+  padding: 6px 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+.deck-link:hover { text-decoration: underline; }
+
+.deck-link:focus-visible,
+.sound-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* "sound: on / off" - the other paper tag, next to the deck link */
+.sound-btn {
+  padding: 6px 12px;
+  font: bold 14px "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+}
+
+.sound-btn:hover { text-decoration: underline; }
+
+/* switched off = greyed out a bit */
+.sound-btn[aria-pressed="false"] { color: var(--faded); }
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* gap between one tick box and the next */
+.check + .check { margin-top: 6px; }
+
+.check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--indigo);   /* colour of the tick box */
+}
+
+/* once the deck is shuffled the setup box is locked until "Start over" */
+.setup.is-locked > * { opacity: 0.5; }
+.setup.is-locked label { cursor: default; }
+
+
+/* ---------- THE TABLE (everything here is centred) ---------- */
+.table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 3vw, 30px);
+}
+
+/* the "what to do next" line */
+.prompt {
+  scroll-margin-top: 16px;   /* leaves a little gap above it when the page scrolls here */
+  margin: 0;
+  padding: 6px 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
+/* ---------- THE SPREAD (the places your cards land) ---------- */
+.spread {
+  --gap: clamp(12px, 2.5vw, 28px);   /* space between the cards */
+  display: flex;
+  flex-wrap: wrap;              /* wraps onto another row when it runs out of room */
+  justify-content: center;
+  gap: var(--gap);
+  position: relative;
+  z-index: 2;                   /* keeps picked cards above the face-down ones */
+}
+
+/* CARD SIZE depends on how many cards the reading has. tarot.js marks the spread
+   as big (1-3 cards), medium (4-5) or small (6-10) */
+.spread[data-size="medium"] { --card-w: clamp(88px, 12vw, 150px); }
+
+.spread[data-size="small"] {
+  --card-w: clamp(76px, 9vw, 118px);
+  --gap: clamp(10px, 1.8vw, 22px);
+  /* --per-row comes from tarot.js (half the cards, rounded up), so 7 cards sit
+     as 4 + 3 and 10 as 5 + 5 instead of one long row with a stray card under it */
+  max-width: calc(var(--per-row) * var(--card-w) + (var(--per-row) - 1) * var(--gap) + 4px);
+}
+
+.spread[data-size="small"] .slot-label {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.slot {
+  width: var(--card-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* the dashed outline that waits for a card */
+.slot-place {
+  width: 100%;
+  aspect-ratio: var(--card-shape);
+  border: 2px dashed var(--paper);
+  border-radius: 6%/3.5%;
+  background: rgba(20, 20, 12, 0.45);
+}
+
+/* once a card is sitting there, drop the outline */
+.slot-place.is-full {
+  border-color: transparent;
+  background: none;
+}
+
+/* "past / present / future" tag under each place */
+.slot-label {
+  background: var(--paper);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
+/* ---------- A CARD (the ones you picked) ----------
+   .card        = the button you click
+   .card-inner  = the part that spins round
+   .card-back   = the patterned side
+   .card-face   = the picture side */
+.card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  perspective: 900px;           /* gives the turn-over some depth */
+  transform-origin: top left;   /* needed for the fly-to-its-place animation */
+  position: relative;
+  z-index: 5;
+}
+
+.card-inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--flip-time) cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+/* turned over = spun half way round */
+.card.is-up .card-inner { transform: rotateY(180deg); }
+
+.card-back,
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 6%/3.5%;       /* rounded corners */
+  overflow: hidden;
+  backface-visibility: hidden;  /* hides each side when it faces away */
+  -webkit-backface-visibility: hidden;
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.45);
+}
+
+.card-back {
+  background: var(--indigo) var(--card-back) center / cover;
+}
+
+.card-face {
+  background: #fdfaf0;
+  transform: rotateY(180deg);   /* starts facing away */
+}
+
+.card-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* upside-down cards */
+.card.is-reversed .card-face img { transform: rotate(180deg); }
+
+/* little lift when you point at a face-down card */
+.card:not(.is-up):hover { translate: 0 -6px; }
+.card { transition: translate 0.15s ease; }
+
+.card.is-up { cursor: default; }
+
+.card:focus-visible,
+.ribbon-card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+
+/* ---------- THE DECK (before shuffling) ---------- */
+.deck {
+  position: relative;
+  width: var(--card-w);
+  aspect-ratio: var(--card-shape);
+  cursor: pointer;
+}
+
+/* each layer of the pile. --lift (set by tarot.js) nudges each one up a little */
+.deck-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 6%/3.5%;
+  background: var(--indigo) var(--card-back) center / cover;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  transform: translate(calc(var(--lift) * -1.5px), calc(var(--lift) * -1.5px));
+}
+
+
+/* ---------- THE RIBBON (the face-down cards to pick from) ---------- */
+.ribbon {
+  /* how far each card tucks under the next one */
+  --tuck-x: calc(var(--ribbon-w) - var(--strip));
+  --tuck-y: calc(var(--ribbon-w) * 0.7);   /* bigger number = rows overlap more */
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1150px;
+  padding: calc(var(--tuck-y) + 16px) 0 0 var(--tuck-x);
+}
+
+.ribbon-card {
+  flex: none;
+  width: var(--ribbon-w);
+  aspect-ratio: var(--card-shape);
+  margin: calc(var(--tuck-y) * -1) 0 0 calc(var(--tuck-x) * -1);
+  padding: 0;
+  border: none;
+  border-radius: 6%/3.5%;
+  background: var(--indigo) var(--card-back) center / cover;
+  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  /* --tilt and --nudge are set by tarot.js so the cards look laid out by hand */
+  transform: rotate(var(--tilt, 0deg)) translateY(var(--nudge, 0px));
+  transition: translate 0.15s ease;
+}
+
+/* with only the 22 major arcana there's room to show more of each card */
+.ribbon.is-small { --strip: clamp(26px, 4vw, 46px); }
+
+/* the card you're pointing at pops up */
+.ribbon-card:hover,
+.ribbon-card:focus-visible { translate: 0 -14px; }
+
+/* a card that's been taken leaves a gap */
+.ribbon-card.is-taken { visibility: hidden; }
+
+
+/* ---------- BUTTONS ---------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  font: bold 13px "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--ink);
+  background: var(--paper);
+  border: none;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+
+/* the main button (shuffle / turn over all) */
+.btn-main {
+  background: var(--indigo);
+  color: var(--paper);
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* buttons can't be pressed while the cards are moving */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
+
+/* ---------- THE READING (sheet of paper at the bottom) ---------- */
+.reading {
+  max-width: 720px;
+  margin: clamp(24px, 4vw, 44px) auto 0;
+  padding: clamp(18px, 3vw, 34px);
+}
+
+.reading-title {
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1;
+  color: var(--indigo);
+  margin: 0 0 10px;
+  letter-spacing: 1px;
+}
+
+/* the entries are kept in the order of the spread, whichever you turn over first */
+.entries {
+  display: flex;
+  flex-direction: column;
+}
+
+/* one card's part of the reading: small picture on the left, words on the right */
+.entry {
+  display: flex;
+  gap: clamp(12px, 2vw, 20px);
+  padding: 18px 0;
+  border-top: 2px dotted var(--ink);
+}
+
+.entry-thumb {
+  flex: none;
+  width: clamp(54px, 9vw, 84px);
+  align-self: flex-start;
+  border-radius: 6%/3.5%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.entry-thumb.is-reversed { transform: rotate(180deg); }
+
+/* "past", "present"... */
+.entry-position {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--faded);
+}
+
+/* what that spot stands for ("what led up to this"), on its own line under the tag */
+.entry-about {
+  display: block;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.entry-name {
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.1;
+  margin: 0 0 4px;
+  letter-spacing: 1px;
+}
+
+/* the word "reversed" after the name */
+.entry-way {
+  font: bold 12px "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--rust);
+  white-space: nowrap;
+}
+
+.entry-keywords {
+  margin: 0 0 8px;
+  font-weight: bold;
+}
+
+/* what the card means in general (upright or reversed) */
+.entry-meaning {
+  margin: 0 0 8px;
+}
+
+/* the blue line = what the card says in this spot (past / present / future / advice) */
+.entry-says {
+  margin: 0;
+  font-style: italic;
+  color: var(--indigo);
+}
+
+/* small "what does reversed mean" note at the bottom of the sheet.
+   only shows when a reversed card is in the reading */
+.reversed-note {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 2px dotted var(--ink);
+  font-size: 12px;
+  color: var(--faded);
+}
+
+/* a new entry fades in (only if the visitor hasn't asked for less motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: entry-in 0.5s ease both; animation-delay: 0.5s; }
+}
+
+@keyframes entry-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ---------- CREDITS (small strip at the very bottom) ---------- */
+.credits a { color: var(--indigo); }
+
+.credits {
+  max-width: 720px;
+  margin: clamp(24px, 4vw, 44px) auto 0;
+  padding: 8px 12px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--faded);
+}
+
+
+/* ---------- WIDE SCREENS: boxes on the left, cards on the right ----------
+   i didn't like the boxes sitting above the cards, so once the page is
+   wider than 860px it splits into 2 columns.
+   first number in grid-template-columns = how wide the left column is. */
+@media (min-width: 860px) {
+  .content-area {
+    display: grid;
+    grid-template-columns: clamp(230px, 23vw, 300px) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;   /* cards, the reading, then credits get whatever height is left */
+    column-gap: clamp(20px, 3vw, 44px);
+    align-items: start;
+  }
+
+  /* left column: title box with the setup box under it */
+  .top-row {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .setup { width: 100%; }
+  .page-title { font-size: clamp(40px, 5vw, 60px); }
+
+  /* right column: cards on top, reading under them, credits at the very bottom */
+  .table   { grid-column: 2; grid-row: 1; }
+  .reading { grid-column: 2; grid-row: 2; }
+  .credits { grid-column: 2; grid-row: 3; align-self: end; }
+}
+
+/* the left column follows me down the page while i scroll the reading
+   (only when the screen is tall enough to fit the whole column. on shorter
+   screens it would get stuck with its bottom cut off, so there it just scrolls away) */
+@media (min-width: 860px) and (min-height: 880px) {
+  .top-row {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+
+/* ---------- LESS MOTION ----------
+   for visitors whose device is set to "reduce motion": cards just appear */
+@media (prefers-reduced-motion: reduce) {
+  .card-inner,
+  .card,
+  .ribbon-card { transition: none; }
+}

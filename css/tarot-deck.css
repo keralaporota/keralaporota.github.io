@@ -1,0 +1,283 @@
+/* =====================================================
+   THE DECK PAGE - every card + what it means
+   goes with tarot-deck.html (+ js/tarot-deck.js and js/tarot-cards.js)
+
+   how the page is put together:
+   - same pink tablecloth + cream paper as the tarot page
+   - title box at the top with a link back to the reading table
+   - one section per suit: a paper heading, then the cards in a grid
+   - click a card = a paper sheet pops up with its meanings
+   ===================================================== */
+
+
+/* ---------- COLOURS + SIZES (same ones as tarot.css, change them all here) ---------- */
+:root {
+  --paper: #f7f1e2;        /* cream paper */
+  --ink: #1e1e1e;          /* main text colour */
+  --faded: #6b5c45;        /* small labels */
+  --indigo: #2f34ad;       /* titles + links */
+  --rust: #c1502f;         /* the word "reversed" */
+  --cloth: #bc7e7a;        /* pink of the tablecloth (shows while the picture loads) */
+
+  --card-w: clamp(84px, 10vw, 124px);   /* how wide the cards in the grid are. middle number is the one to change */
+  --card-shape: 7 / 12;                 /* width / height of a card */
+}
+
+
+/* ---------- PAGE BASICS ---------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  color: var(--ink);
+  font: 14px/1.6 "Courier New", Courier, monospace;
+}
+
+/* CONTENT AREA - the whole page, like the other pages */
+.content-area {
+  min-height: 100vh;
+  background: var(--cloth);
+  background-image: url("../images/patternsbg/pinkstar-tile.jpg");   /* same tablecloth as the tarot page */
+  background-size: max(36%, 300px) auto;
+  background-repeat: repeat;
+  padding: clamp(20px, 4vw, 56px);
+}
+
+/* paper texture on every cream box */
+.paper {
+  background-color: var(--paper);
+  background-image: url("../images/papertextures/paper-cream-web.jpg");
+  background-size: 1500px auto;
+  background-repeat: repeat;
+}
+
+
+/* ---------- HERO (title box at the top) ---------- */
+.deck-hero {
+  display: inline-block;
+  padding: clamp(16px, 3vw, 32px);
+  margin-bottom: clamp(20px, 3vw, 36px);
+  transform: rotate(-1deg);   /* slightly crooked, like it was put down by hand */
+}
+
+.page-title {
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+  color: var(--indigo);
+  margin: 0 0 0.2em;
+  letter-spacing: 1px;
+}
+
+.deck-intro {
+  margin: 0 0 10px;
+  max-width: 44ch;   /* ch = about one letter wide, so this is line length */
+}
+
+/* "back to the reading table" */
+.back-link {
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--indigo);
+}
+
+.back-link:focus-visible,
+.deck-card:focus-visible,
+.sheet-close:focus-visible {
+  outline: 3px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+
+/* ---------- ONE SUIT (heading + its cards) ---------- */
+.suit { margin-bottom: clamp(28px, 4vw, 48px); }
+
+/* the paper heading: "Wands  drive, ideas, work" */
+.suit-title {
+  display: inline-block;
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1;
+  color: var(--indigo);
+  padding: 8px 14px;
+  margin: 0 0 clamp(14px, 2vw, 22px);
+  letter-spacing: 1px;
+}
+
+/* the few words after the suit's name */
+.suit-about {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--faded);
+  margin-left: 10px;
+}
+
+/* the cards, in rows that wrap */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(12px, 2vw, 22px);
+}
+
+/* one card in the grid = a button with the picture and its name tag under it */
+.deck-card {
+  width: var(--card-w);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  transition: translate 0.15s ease;
+}
+
+.deck-card:hover { translate: 0 -6px; }   /* little lift when i point at it */
+
+.deck-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--card-shape);
+  object-fit: cover;
+  border-radius: 6%/3.5%;
+  background: #fdfaf0;                           /* shows until the picture loads */
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.45);
+}
+
+.deck-card-name {
+  background: var(--paper);
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink);
+}
+
+
+/* ---------- THE POP-UP SHEET (one card's meanings) ---------- */
+.card-sheet {
+  width: min(820px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: clamp(18px, 3vw, 34px);
+  border: none;
+  color: var(--ink);
+  box-shadow: 6px 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* the darkened page behind the sheet */
+.card-sheet::backdrop { background: rgba(40, 20, 20, 0.6); }
+
+/* the close button sits in the sheet's top right corner */
+.sheet-close {
+  position: absolute;
+  top: clamp(12px, 2vw, 20px);
+  right: clamp(12px, 2vw, 20px);
+  font: bold 13px "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--paper);
+  background: var(--ink);
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* picture on the left, words on the right */
+.sheet-body {
+  display: flex;
+  gap: clamp(16px, 3vw, 30px);
+  align-items: flex-start;
+}
+
+.sheet-picture {
+  flex: none;
+  width: clamp(120px, 24vw, 220px);
+  border-radius: 6%/3.5%;
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* the words take up whatever room the picture leaves */
+.sheet-words {
+  flex: 1;
+  min-width: 0;
+}
+
+.sheet-name {
+  font-family: 'Jacquard 12', sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  color: var(--indigo);
+  margin: 0 0 6px;
+  padding-right: 80px;   /* keeps a long name from running under the close button */
+  letter-spacing: 1px;
+}
+
+/* the upright half and the reversed half */
+.sheet-side {
+  padding: 14px 0;
+  border-top: 2px dotted var(--ink);
+}
+
+/* the words "upright" / "reversed" */
+.side-title {
+  margin: 0 0 4px;
+  font: bold 12px "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+  color: var(--faded);
+}
+
+.side-title.is-reversed { color: var(--rust); }
+
+.sheet-keywords {
+  margin: 0 0 6px;
+  font-weight: bold;
+}
+
+.sheet-meaning { margin: 0 0 10px; }
+
+/* the four lines: small label on the left, the line on the right */
+.sheet-lines {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0;
+}
+
+.sheet-lines dt {
+  font-size: 12px;
+  color: var(--faded);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.sheet-lines dd {
+  margin: 0;
+  font-style: italic;
+  color: var(--indigo);
+}
+
+/* narrow screens: picture on top (smaller), words under it, labels above their lines */
+@media (max-width: 560px) {
+  .sheet-body { flex-direction: column; }
+  .sheet-words { width: 100%; }
+  .sheet-name { padding-right: 0; }   /* the button is beside the picture here, not the name */
+  .sheet-picture { width: 130px; }
+  .sheet-lines { grid-template-columns: 1fr; gap: 0; }
+  .sheet-lines dd { margin-bottom: 6px; }
+}
+
+/* less motion for visitors whose device asks for it */
+@media (prefers-reduced-motion: reduce) {
+  .deck-card { transition: none; }
+}
