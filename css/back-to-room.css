@@ -1,0 +1,44 @@
+/* BACK TO ROOM BUTTON - the same little button on every page.
+   change it here once and it changes everywhere */
+a.back-to-room {
+  position: fixed;          /* stays in the corner even when the page scrolls */
+  top: 12px;
+  left: 12px;
+  z-index: 9999;            /* sits above everything else on the page */
+
+  background: #f7f1e2;
+  border: 1.5px solid #1e1e1e;
+  color: #1e1e1e;
+  font: bold 9pt "Courier New", monospace;
+  letter-spacing: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 5px 10px;
+  box-shadow: 3px 3px 0 #1e1e1e;   /* chunky sticker shadow */
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+/* hover = presses down into its shadow and goes pink */
+a.back-to-room:hover,
+a.back-to-room:focus-visible {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #1e1e1e;
+  background: #ffb7c5;
+  color: #1e1e1e;
+}
+
+/* phones: moves to the bottom corner (so it never sits on a page title)
+   and shrinks to just the arrow + "room" */
+@media (max-width: 700px) {
+  a.back-to-room {
+    top: auto;
+    bottom: 10px;
+    left: 10px;
+    font-size: 8pt;
+    padding: 4px 7px;
+  }
+
+  a.back-to-room .long {
+    display: none;
+  }
+}
