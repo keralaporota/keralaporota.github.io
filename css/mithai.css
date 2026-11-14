@@ -9,7 +9,7 @@
 /* whole page */
 body {
   background: #efcf75;   /* yellow, shows while image loads */
-  background-image: url("../images/yellowpaperie.webp");
+  background-image: url("../images/patternsbg/yellowpaperie.webp");
   background-size: 40% auto;   /* same size as recipes page */
   background-repeat: repeat;
   color: #4a2e1f;        /* dark chai brown text */
